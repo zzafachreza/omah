@@ -11,7 +11,7 @@ import RiwayatPelayanan from './Menu/riwayat';
 import Referensi from './Menu/referensi';
 import Edit from './Menu/Edit';
 import DestinasiWisata from './Menu/destinasi';
-
+import DetailDestinasiWisata from './Menu/detaildestinasi';
 
 
 
@@ -30,6 +30,7 @@ export {
   Referensi,
   Edit,
   DestinasiWisata,
+  DetailDestinasiWisata,
 
 
 };

@@ -65,7 +65,8 @@ import {
   RiwayatPelayanan,
   Referensi,
   Edit,
-  DestinasiWisata
+  DestinasiWisata,
+  DetailDestinasiWisata
 
 
 } from '../pages';
@@ -146,8 +147,8 @@ export default function Router() {
       />
 
       <Stack.Screen
-        name="RiwayatPelayanan"
-        component={RiwayatPelayanan}
+        name="DetailDestinasiWisata"
+        component={DetailDestinasiWisata}
         options={{
           headerShown: false,
 

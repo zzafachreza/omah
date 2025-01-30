@@ -15,10 +15,10 @@ import MyTimePicker from './MyTimePicker';
 import MyFileUploader from './MyFileUpload';
 import FileUpload from './FileUpload';
 import MyLoading from './MyLoading';
-
+import DestinationCard from './DestinationCard';
 
 
 
 export { MyGap, MyButton, MyInput, MyHeader, MyPicker, MyCalendar, BottomNavigator, 
     MyRadio,MyInputSecond,MyButtonSecond ,MyCalendarSecond, MyInputLogin,MyImageUpload,
-     MyTimePicker,MyFileUploader, FileUpload, MyLoading};
+     MyTimePicker,MyFileUploader, FileUpload, MyLoading, DestinationCard};
