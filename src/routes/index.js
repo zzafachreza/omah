@@ -66,7 +66,9 @@ import {
   Referensi,
   Edit,
   DestinasiWisata,
-  DetailDestinasiWisata
+  DetailDestinasiWisata,
+  UlasanDestinasi,
+  OleholehUMKMDetail
 
 
 } from '../pages';
@@ -74,6 +76,7 @@ import { colors } from '../utils';
 import { Icon } from 'react-native-elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigator } from '../components';
+import OleholehUMKM from '../pages/Menu/oleholeh';
 
 
 
@@ -92,7 +95,7 @@ const MainApp = () => {
 
 export default function Router() {
   return (
-    <Stack.Navigator initialRouteName='DestinasiWisata'>
+    <Stack.Navigator initialRouteName='OleholehUMKMDetail'>
       <Stack.Screen
         name="Splash"
         component={Splash}
@@ -157,8 +160,8 @@ export default function Router() {
 
 
       <Stack.Screen
-        name="Referensi"
-        component={Referensi}
+        name="UlasanDestinasi"
+        component={UlasanDestinasi}
         options={{
           headerShown: false,
 
@@ -167,8 +170,17 @@ export default function Router() {
 
 
       <Stack.Screen
-        name="Petunjuk"
-        component={Petunjuk}
+        name="OleholehUMKM"
+        component={OleholehUMKM}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+<Stack.Screen
+        name="OleholehUMKMDetail"
+        component={OleholehUMKMDetail}
         options={{
           headerShown: false,
 

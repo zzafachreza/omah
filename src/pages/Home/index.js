@@ -190,14 +190,14 @@ export default function Home({ navigation, route }) {
 
     }}>
     <MyMenu
-      onPress={() => navigation.navigate('InputSwamedikasi')}
+      onPress={() => navigation.navigate('DestinasiWisata')}
       img={require('../../assets/icon_menu1.png')}
       label="Destinasi Wisata"
       backgroundColor={colors.primary}
       />
 
 <MyMenu
-      onPress={() => navigation.navigate('InputSwamedikasi')}
+      onPress={() => navigation.navigate('OleholehUMKM')}
       img={require('../../assets/icon_menu2.png')}
       label="Oleh-oleh UMKM"
       backgroundColor={colors.primary}

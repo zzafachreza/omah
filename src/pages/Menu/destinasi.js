@@ -162,7 +162,12 @@ const handleWisata = (title) => {
         rating={destinasi.rating}
         reviews={destinasi.riviews}
         time={destinasi.time}
-        onPress={() => navigation.navigate('DetailDestinasiWisata', {id:destinasi.id, type:"sejarah"})}
+        onPress={() => navigation.navigate('DetailDestinasiWisata', {
+  id: destinasi.id,
+  type: "sejarah",
+  namaWisata: destinasi.title, // Kirim nama wisata
+})}
+
       />
     ))}
     </ScrollView>

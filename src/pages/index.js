@@ -12,7 +12,8 @@ import Referensi from './Menu/referensi';
 import Edit from './Menu/Edit';
 import DestinasiWisata from './Menu/destinasi';
 import DetailDestinasiWisata from './Menu/detaildestinasi';
-
+import UlasanDestinasi from './Menu/ulasandestinasi';
+import OleholehUMKMDetail from './Menu/oleholehdetail';
 
 
 
@@ -31,6 +32,6 @@ export {
   Edit,
   DestinasiWisata,
   DetailDestinasiWisata,
-
-
+  UlasanDestinasi,
+  OleholehUMKMDetail,
 };

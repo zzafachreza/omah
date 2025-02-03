@@ -16,9 +16,9 @@ import MyFileUploader from './MyFileUpload';
 import FileUpload from './FileUpload';
 import MyLoading from './MyLoading';
 import DestinationCard from './DestinationCard';
-
+import StarRating from './Rating';
 
 
 export { MyGap, MyButton, MyInput, MyHeader, MyPicker, MyCalendar, BottomNavigator, 
     MyRadio,MyInputSecond,MyButtonSecond ,MyCalendarSecond, MyInputLogin,MyImageUpload,
-     MyTimePicker,MyFileUploader, FileUpload, MyLoading, DestinationCard};
+     MyTimePicker,MyFileUploader, FileUpload, MyLoading, DestinationCard,StarRating};
