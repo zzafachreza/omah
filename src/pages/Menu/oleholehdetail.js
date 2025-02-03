@@ -1,93 +1,144 @@
-import { View, Text, ScrollView } from 'react-native'
-import React from 'react'
-import { colors, fonts } from '../../utils'
-import { MyHeader } from '../../components'
-import { Image } from 'react-native'
-import { add } from 'react-native-reanimated'
+// OleholehUMKMDetail.js
+import React from 'react';
+import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { colors, fonts } from '../../utils';
+import { MyHeader } from '../../components';
 import YoutubePlayer from "react-native-youtube-iframe";
+import { Icon } from 'react-native-elements';
 
-export default function OleholehUMKMDetail({}) {
+const OleholehUMKMDetail = ({ route, navigation }) => {
+  const { item } = route.params; // Ambil data dari route.params
+
+  const data = [
+    { type: 'header', title: 'Oleh-oleh UMKM' },
+    { type: 'title', text: item.title }, // Judul dari data yang dipilih
+    { type: 'image', source: item.shopImage }, // Foto toko dari data yang dipilih
+    { type: 'reviewImages', sources: item.reviewImages }, // Foto review dari data yang dipilih
+    { type: 'description', text: item.description }, // Deskripsi dari data yang dipilih
+    { type: 'info', label: '', value: item.linklocation }, // Lokasi dari data yang dipilih
+    { type: 'info', label: 'Lokasi', value: item.location }, // Lokasi dari data yang dipilih
+    { type: 'info', label: 'Jam Buka', value: item.openingHours }, // Jam Buka dari data yang dipilih
+    { type: 'info', label: 'Range Harga', value: item.priceRange }, // Range Harga dari data yang dipilih
+    { type: 'info', label: 'Kontak Darurat', value: item.emergencyContact }, // Kontak Darurat dari data yang dipilih
+    { type: 'info', label: 'Informasi Kesehatan', value: item.healthInfo }, // Informasi Kesehatan dari data yang dipilih
+    { type: 'video', videoId: item.videoUrl.split('v=')[1] }, // Video dari data yang dipilih
+    { type: 'reviews', reviews: item.reviews }, // Ulasan dari data yang dipilih
+  ];
+
+  const renderStars = (rating) => {
+    return (
+      <View style={styles.starContainer}>
+        {[...Array(5)].map((_, index) => (
+          <Icon 
+            key={index} 
+            name={index < rating ? 'star' : 'star-border'} 
+            size={14} 
+            color='gold' 
+          />
+        ))}
+      </View>
+    );
+  };
+
+  const renderItem = ({ item }) => {
+    switch (item.type) {
+      case 'header':
+        return <MyHeader title={item.title} />;
+      case 'title':
+        return (
+          <Text style={styles.titleText}>{item.text}</Text>
+        );
+      case 'image':
+        return (
+          <Image style={styles.image} source={item.source} />
+        );
+      case 'reviewImages':
+        return (
+          <View style={styles.reviewContainer}>
+            {item.sources.map((source, index) => (
+              <Image key={index} style={styles.reviewImage} source={source} />
+            ))}
+          </View>
+        );
+      case 'description':
+        return (
+          <View style={styles.descriptionContainer}>
+            <Text style={styles.descriptionText}>{item.text}</Text>
+          </View>
+        );
+      case 'video':
+        return (
+          <View style={styles.videoContainer}>
+            <YoutubePlayer height={164} width={292} play={false} videoId={item.videoId} />
+          </View>
+        );
+      case 'info':
+        return (
+          <View style={styles.infoContainer}>
+            <Text style={styles.infoLabel}>{item.label}</Text>
+            <Text style={styles.infoValue}>{item.value}</Text>
+          </View>
+        );
+      case 'reviews':
+        return (
+          <View style={styles.reviewsContainer}>
+            <View style={{
+              flexDirection:"row",
+              justifyContent:"flex-start",
+              alignItems:"center"
+            }}>
+              <Text style={styles.reviewsTitle}>Ulasan</Text>
+              <View style={{ padding:0.5, backgroundColor:colors.black, width:'100%', top:-5, left:10}}/>
+            </View>
+            {item.reviews.map((review) => (
+              <View key={review.id} style={styles.reviewItem}>
+                <Image source={require('../../assets/profile_nizam.png')} style={styles.profilePic} />
+                <View style={styles.reviewContent}>
+                  <Text style={styles.reviewName}>{review.user}</Text>
+                  {renderStars(review.rating)}
+                  <Text style={styles.reviewComment}>{review.comment}</Text>
+                </View>
+              </View>
+            ))}
+            <TouchableOpacity onPress={() => navigation.navigate('UlasanOleholeh', {reviews: item.reviews,  title: item.title})} style={styles.seeAllButton}>
+              <Text style={styles.seeAllText}>Lihat Semua</Text>
+              <Icon style={{top:2}} type='ionicon' name='chevron-forward-outline'/>
+            </TouchableOpacity>
+          </View>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
-    <View style={{
-        flex: 1,
-        backgroundColor:colors.white,
-
-    }}>
-      <MyHeader title="Oleh-oleh UMKM"/>
-      <ScrollView>
-        <View style={{
-            padding:10,
-        }}>
-
-        {/* JUDUL TOKO */}
-        <Text style={{
-            fontFamily:fonts.primary[600],
-            color:colors.primary,
-            fontSize:20,
-            textAlign:"center"
-        }}>Toko Kue Ende</Text>
-
-        {/* Image Toko */}
-        <Image style={{
-            width:340,
-            height:191,
-            alignItems:"center",
-            alignSelf:"center",
-        }} source={require('../../assets/toko_kue_ende.png')}/>
-
-        {/* image riview */}
-        <View style={{
-            flexDirection:"row",
-            justifyContent:'space-between',
-            alignItems:"center",
-            marginTop:10
-        }}>
-        {/* IMAGE RIVIEW 1 */}
-        <Image style={{width:100, height:59, borderRadius:5}} source={require('../../assets/riview_tokokueende_1.png')}/>
-        <Image style={{width:100, height:59, borderRadius:5}} source={require('../../assets/riview_tokokueende_2.png')}/>
-        <Image style={{width:100, height:59, borderRadius:5}} source={require('../../assets/riview_tokokueende_3.png')}/>
-        
-        </View>
-
-        {/* DEKRIPSI TOKO */}
-        <View style={{
-               marginTop:10,
-               padding:10,
-        }}>
-            <Text style={{
-                fontFamily:fonts.primary[400],
-                color:colors.black,
-                fontSize:12,
-                textAlign:"justify",
-                
-            }}>  Toko Kue Ende merupakan salah satu toko oleh-oleh yang dikelola oleh UMKM di Kota Bengkulu. Ada berbagai pilihan oleh-oleh makanan yang dapat pengunjung beli.</Text>
-        </View>
-
-        {/* VIDEO TOKO */}
-        <View style={{
-            padding:10,
-            marginTop:10,
-            alignItems:"center",
-            alignContent:"center"
-        }}>
-        <YoutubePlayer
-              height={164}
-              width={292}
-              play={false}
-              videoId='QBAEZP2GFHA'
-              onChangeState={(event) => {
-                if (event === "ended") setIsPlaying(false);
-              }}
-            />
-        </View>
-
-        {/* LOKASI, DLL */}
-        <View>
-            
-        </View>
-    
-        </View>
-      </ScrollView>
+    <View style={styles.container}>
+      <FlatList data={data} renderItem={renderItem} keyExtractor={(item, index) => index.toString()} />
     </View>
-  )
-}
+  );
+};
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: colors.white },
+  titleText: { fontFamily: fonts.primary[600], color: colors.primary, fontSize: 20, textAlign: 'center', padding: 10 },
+  image: { width: 340, height: 191, alignSelf: 'center', marginTop: 10 },
+  reviewContainer: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, paddingHorizontal: 10 },
+  reviewImage: { width: 100, height: 59, borderRadius: 5 },
+  descriptionContainer: { marginTop: 10, padding: 10 },
+  descriptionText: { fontFamily: fonts.primary[400], color: colors.black, fontSize: 12, textAlign: 'justify' },
+  videoContainer: { padding: 10, marginTop: 10, alignItems: 'center' },
+  infoContainer: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10, paddingHorizontal: 10 },
+  infoLabel: { fontFamily: fonts.primary[500], fontSize: 15, width: 120 },
+  infoValue: { fontFamily: fonts.primary[400], fontSize: 12, flex: 1 },
+  reviewsContainer: { padding: 10, marginTop: 10 },
+  reviewsTitle: { fontFamily: fonts.primary[600], fontSize: 18, color: colors.black, marginBottom: 10 },
+  reviewItem: { flexDirection: 'row', marginBottom: 10, padding: 10, backgroundColor: colors.lightGray, borderRadius: 5 },
+  profilePic: { width: 40, height: 40, borderRadius: 20, marginRight: 10 },
+  reviewContent: { flex: 1 },
+  starContainer: { flexDirection: 'row', marginVertical: 5 },
+  reviewComment: { fontFamily: fonts.primary[400], fontSize: 12, textAlign: 'justify' },
+  reviewName: { fontFamily: fonts.primary[600], fontSize: 14, color:colors.primary },
+  seeAllButton: {alignItems:"center", flexDirection:"row",justifyContent:"center"}
+});
+
+export default OleholehUMKMDetail;

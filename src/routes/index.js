@@ -68,7 +68,9 @@ import {
   DestinasiWisata,
   DetailDestinasiWisata,
   UlasanDestinasi,
-  OleholehUMKMDetail
+  OleholehUMKMDetail,
+  UlasanOleholeh,
+  TambahKomentarOleholeh
 
 
 } from '../pages';
@@ -95,7 +97,7 @@ const MainApp = () => {
 
 export default function Router() {
   return (
-    <Stack.Navigator initialRouteName='OleholehUMKMDetail'>
+    <Stack.Navigator initialRouteName='MainApp'>
       <Stack.Screen
         name="Splash"
         component={Splash}
@@ -188,7 +190,24 @@ export default function Router() {
       />
 
 
+<Stack.Screen
+        name="UlasanOleholeh"
+        component={UlasanOleholeh}
+        options={{
+          headerShown: false,
 
+        }}
+      />
+
+
+<Stack.Screen
+        name="TambahKomentarOleholeh"
+        component={TambahKomentarOleholeh}
+        options={{
+          headerShown: false,
+
+        }}
+      />
 
 
       <Stack.Screen

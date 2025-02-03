@@ -14,6 +14,8 @@ import DestinasiWisata from './Menu/destinasi';
 import DetailDestinasiWisata from './Menu/detaildestinasi';
 import UlasanDestinasi from './Menu/ulasandestinasi';
 import OleholehUMKMDetail from './Menu/oleholehdetail';
+import UlasanOleholeh from './Menu/ulasanoleholeh';
+import TambahKomentarOleholeh from './Menu/komenoleholeh';
 
 
 
@@ -34,4 +36,7 @@ export {
   DetailDestinasiWisata,
   UlasanDestinasi,
   OleholehUMKMDetail,
+  UlasanOleholeh,
+  TambahKomentarOleholeh,
+
 };
