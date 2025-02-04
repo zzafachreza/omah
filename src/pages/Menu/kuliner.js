@@ -41,6 +41,181 @@ const data = [
       },
     ],
   },
+
+  {
+    id: '2',
+    image: require('../../assets/bebek_sambal.png'), // Foto utama
+    shopImage: require('../../assets/rm_kampung_persisir2.png'), // Foto toko
+    title: 'Bebek Sambal Pecut',
+    linklocation:'https://maps.app.goo.gl/QKf276pkGCV1HxgJ8',
+    location: 'Jl. H. Adam Malik kel No.RT. 01, Pagar Dewa, Kec. Selebar, Kota Bengkulu, Bengkulu 38225',
+    description: '    Toko Kue Ende merupakan salah satu tujuan wisata kuliner yang ada di Kota Bengkulu. Ada berbagai pilihan  makanan yang dapat pengunjung nikmati.',
+    videoUrl: 'https://www.youtube.com/watch?v=wn8E4LfeECQ',
+    reviewImages: [
+      require('../../assets/riview_rm_kampung_pesisir_1.png'),
+      require('../../assets/riview_rm_kampung_pesisir_2.png'),
+      require('../../assets/riview_rm_kampung_pesisir_3.png'),
+    ],
+    openingHours: '08.00 - 21.00 WIB', // Jam Buka
+    priceRange: 'Mulai dari Rp5.000 - Rp35.000', // Range Harga
+    emergencyContact: '(0736) 22098', // Kontak Darurat
+    healthInfo: '(0736) 27070', // Informasi Kesehatan
+    
+    reviews: [
+      {
+        user: 'Nizam Syahputra',
+        profilePic: require('../../assets/profile_nizam.png'), // Foto profil pengulas
+        comment: 'Makanannya enak banget, harganya murah-murah juga. Banyak pilihan makanan yang bisa dibeli oleh pengunjung.',
+        rating: 5,
+      },
+      {
+        user: 'Aldi Pratama',
+        profilePic: require('../../assets/prodile_aldi.png'), // Foto profil pengulas
+        comment: 'Tempatnya bagus, bersih, penjual ramah. Tempat kulliner yang cocok dikunjungi jika ke Bengkulu. ',
+        rating: 4,
+      },
+    ],
+  },
+
+  {
+    id: '3',
+    image: require('../../assets/sumpit_mas.png'), // Foto utama
+    shopImage: require('../../assets/rm_kampung_persisir2.png'), // Foto toko
+    title: 'Sumpit Mas Restaurant',
+    linklocation:'https://maps.app.goo.gl/QKf276pkGCV1HxgJ8',
+    location: 'Jl. H. Adam Malik, Cemp. Permai, Kec. Gading Cemp., Kota Bengkulu, Bengkulu 38211',
+    description: '    Toko Kue Ende merupakan salah satu tujuan wisata kuliner yang ada di Kota Bengkulu. Ada berbagai pilihan  makanan yang dapat pengunjung nikmati.',
+    videoUrl: 'https://www.youtube.com/watch?v=wn8E4LfeECQ',
+    reviewImages: [
+      require('../../assets/riview_rm_kampung_pesisir_1.png'),
+      require('../../assets/riview_rm_kampung_pesisir_2.png'),
+      require('../../assets/riview_rm_kampung_pesisir_3.png'),
+    ],
+    openingHours: '08.00 - 21.00 WIB', // Jam Buka
+    priceRange: 'Mulai dari Rp5.000 - Rp35.000', // Range Harga
+    emergencyContact: '(0736) 22098', // Kontak Darurat
+    healthInfo: '(0736) 27070', // Informasi Kesehatan
+    
+    reviews: [
+      {
+        user: 'Nizam Syahputra',
+        profilePic: require('../../assets/profile_nizam.png'), // Foto profil pengulas
+        comment: 'Makanannya enak banget, harganya murah-murah juga. Banyak pilihan makanan yang bisa dibeli oleh pengunjung.',
+        rating: 5,
+      },
+      {
+        user: 'Aldi Pratama',
+        profilePic: require('../../assets/prodile_aldi.png'), // Foto profil pengulas
+        comment: 'Tempatnya bagus, bersih, penjual ramah. Tempat kulliner yang cocok dikunjungi jika ke Bengkulu. ',
+        rating: 4,
+      },
+    ],
+  },
+
+  {
+    id: '4',
+    image: require('../../assets/pempek_cektoni.png'), // Foto utama
+    shopImage: require('../../assets/rm_kampung_persisir2.png'), // Foto toko
+    title: 'Pempek Cek Toni',
+    linklocation:'https://maps.app.goo.gl/QKf276pkGCV1HxgJ8',
+    location: 'Jl. Kapt. P. Tandean, Jemb. Kecil, Kec. Singaran Pati, Kota Bengkulu, Bengkulu 38224',
+    description: '    Toko Kue Ende merupakan salah satu tujuan wisata kuliner yang ada di Kota Bengkulu. Ada berbagai pilihan  makanan yang dapat pengunjung nikmati.',
+    videoUrl: 'https://www.youtube.com/watch?v=wn8E4LfeECQ',
+    reviewImages: [
+      require('../../assets/riview_rm_kampung_pesisir_1.png'),
+      require('../../assets/riview_rm_kampung_pesisir_2.png'),
+      require('../../assets/riview_rm_kampung_pesisir_3.png'),
+    ],
+    openingHours: '08.00 - 21.00 WIB', // Jam Buka
+    priceRange: 'Mulai dari Rp5.000 - Rp35.000', // Range Harga
+    emergencyContact: '(0736) 22098', // Kontak Darurat
+    healthInfo: '(0736) 27070', // Informasi Kesehatan
+    
+    reviews: [
+      {
+        user: 'Nizam Syahputra',
+        profilePic: require('../../assets/profile_nizam.png'), // Foto profil pengulas
+        comment: 'Makanannya enak banget, harganya murah-murah juga. Banyak pilihan makanan yang bisa dibeli oleh pengunjung.',
+        rating: 5,
+      },
+      {
+        user: 'Aldi Pratama',
+        profilePic: require('../../assets/prodile_aldi.png'), // Foto profil pengulas
+        comment: 'Tempatnya bagus, bersih, penjual ramah. Tempat kulliner yang cocok dikunjungi jika ke Bengkulu. ',
+        rating: 4,
+      },
+    ],
+  },
+
+  {
+    id: '5',
+    image: require('../../assets/warkom_palembang.png'), // Foto utama
+    shopImage: require('../../assets/rm_kampung_persisir2.png'), // Foto toko
+    title: 'RM Kampoeng Pesisir',
+    linklocation:'https://maps.app.goo.gl/QKf276pkGCV1HxgJ8',
+    location: 'Jl. Jendral. Sudirman No.57, Tengah Padang, Kec. Tlk. Segara, Kota Bengkulu, Bengkulu 38113',
+    description: '    Toko Kue Ende merupakan salah satu tujuan wisata kuliner yang ada di Kota Bengkulu. Ada berbagai pilihan  makanan yang dapat pengunjung nikmati.',
+    videoUrl: 'https://www.youtube.com/watch?v=wn8E4LfeECQ',
+    reviewImages: [
+      require('../../assets/riview_rm_kampung_pesisir_1.png'),
+      require('../../assets/riview_rm_kampung_pesisir_2.png'),
+      require('../../assets/riview_rm_kampung_pesisir_3.png'),
+    ],
+    openingHours: '08.00 - 21.00 WIB', // Jam Buka
+    priceRange: 'Mulai dari Rp5.000 - Rp35.000', // Range Harga
+    emergencyContact: '(0736) 22098', // Kontak Darurat
+    healthInfo: '(0736) 27070', // Informasi Kesehatan
+    
+    reviews: [
+      {
+        user: 'Nizam Syahputra',
+        profilePic: require('../../assets/profile_nizam.png'), // Foto profil pengulas
+        comment: 'Makanannya enak banget, harganya murah-murah juga. Banyak pilihan makanan yang bisa dibeli oleh pengunjung.',
+        rating: 5,
+      },
+      {
+        user: 'Aldi Pratama',
+        profilePic: require('../../assets/prodile_aldi.png'), // Foto profil pengulas
+        comment: 'Tempatnya bagus, bersih, penjual ramah. Tempat kulliner yang cocok dikunjungi jika ke Bengkulu. ',
+        rating: 4,
+      },
+    ],
+  },
+
+  {
+    id: '6',
+    image: require('../../assets/pindang_77.png'), // Foto utama
+    shopImage: require('../../assets/rm_kampung_persisir2.png'), // Foto toko
+    title: 'Pindang 77',
+    linklocation:'https://maps.app.goo.gl/QKf276pkGCV1HxgJ8',
+    location: 'Jl. Sedap Malam No.26a, Nusa Indah, Kec. Ratu Agung, Kota Bengkulu, Bengkulu',
+    description: '    Toko Kue Ende merupakan salah satu tujuan wisata kuliner yang ada di Kota Bengkulu. Ada berbagai pilihan  makanan yang dapat pengunjung nikmati.',
+    videoUrl: 'https://www.youtube.com/watch?v=wn8E4LfeECQ',
+    reviewImages: [
+      require('../../assets/riview_rm_kampung_pesisir_1.png'),
+      require('../../assets/riview_rm_kampung_pesisir_2.png'),
+      require('../../assets/riview_rm_kampung_pesisir_3.png'),
+    ],
+    openingHours: '08.00 - 21.00 WIB', // Jam Buka
+    priceRange: 'Mulai dari Rp5.000 - Rp35.000', // Range Harga
+    emergencyContact: '(0736) 22098', // Kontak Darurat
+    healthInfo: '(0736) 27070', // Informasi Kesehatan
+    
+    reviews: [
+      {
+        user: 'Nizam Syahputra',
+        profilePic: require('../../assets/profile_nizam.png'), // Foto profil pengulas
+        comment: 'Makanannya enak banget, harganya murah-murah juga. Banyak pilihan makanan yang bisa dibeli oleh pengunjung.',
+        rating: 5,
+      },
+      {
+        user: 'Aldi Pratama',
+        profilePic: require('../../assets/prodile_aldi.png'), // Foto profil pengulas
+        comment: 'Tempatnya bagus, bersih, penjual ramah. Tempat kulliner yang cocok dikunjungi jika ke Bengkulu. ',
+        rating: 4,
+      },
+    ],
+  },
   // Tambahkan item lainnya
 ];
 export default function RekomendasiKuliner({navigation}) {

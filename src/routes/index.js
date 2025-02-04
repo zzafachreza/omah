@@ -82,7 +82,10 @@ import {
   PenginepanDetail,
   UlasanPenginapan,
   TambahKomentarPenginapan,
-  SharingPengalaman
+  SharingPengalaman,
+  TambahPengalaman,
+  PanduanWisata,
+  TambahKomentarDestinasi
 
 
 } from '../pages';
@@ -91,6 +94,7 @@ import { Icon } from 'react-native-elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigator } from '../components';
 import OleholehUMKM from '../pages/Menu/oleholeh';
+import PanduanDetail from '../pages/Menu/panduandetail';
 
 
 
@@ -176,6 +180,15 @@ export default function Router() {
       <Stack.Screen
         name="UlasanDestinasi"
         component={UlasanDestinasi}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+<Stack.Screen
+        name="TambahKomentarDestinasi"
+        component={TambahKomentarDestinasi}
         options={{
           headerShown: false,
 
@@ -327,6 +340,34 @@ export default function Router() {
 <Stack.Screen
         name="SharingPengalaman"
         component={SharingPengalaman}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+
+<Stack.Screen
+        name="TambahPengalaman"
+        component={TambahPengalaman}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+<Stack.Screen
+        name="PanduanWisata"
+        component={PanduanWisata}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+<Stack.Screen
+        name="PanduanDetail"
+        component={PanduanDetail}
         options={{
           headerShown: false,
 

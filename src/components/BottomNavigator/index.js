@@ -48,15 +48,17 @@ export default function BottomNavigator({ state, descriptors, navigation }) {
 
   return (
     <View style={{
-      padding:10,
-      backgroundColor
+      padding:5,
+      backgroundColor:colors.primary,
+      borderTopRightRadius:20,
+      borderTopLeftRadius:20
       
     }}>
       <View style={{
-      backgroundColor: colors.white,
+      backgroundColor: colors.primary,
       flexDirection: 'row',
       height: 50,
-     borderRadius:50
+      borderRadius:50
    
       
     }}>
@@ -155,7 +157,7 @@ export default function BottomNavigator({ state, descriptors, navigation }) {
                  
                 }}>
 
-                <Icon type='ionicon' name={iconName} size={30} color={isFocused ? colors.primary : '#C2ECFB'} />
+                <Icon type='ionicon' name={iconName} size={30} color={isFocused ? colors.white : '#ffffff'} />
                 <Text style={{
                   marginTop: 4,
                   fontFamily: fonts.body2.fontFamily,

@@ -1,126 +1,143 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native';
-import { MyHeader, StarRating } from '../../components';
+import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { MyHeader } from '../../components';
+import { colors, fonts } from '../../utils';
+import { Icon } from 'react-native-elements';
 
-export default function UlasanDestinasi({ route }) {
-  // let namaWisata = 'Nama tidak ditemukan';
-  // try {
-  //   const namaWisata = route?.params?.namaWisata || 'Nama tidak ditemukan';
-  //   console.log("Nama Wisata:", namaWisata); 
-  // } catch (error) {
-  //   console.error("Error mendapatkan nama wisata:", error);
-  // };
+const UlasanDestinasi = ({ route, navigation }) => {
+    const { title, reviews } = route.params;
 
-  // if (!namaWisata || namaWisata === 'Nama tidak ditemukan') {
-  //   return <Text>Error: Nama wisata tidak ditemukan!</Text>;
-  // };
-
-
-  
-  // useEffect(() => {
-  //   console.log("Route Params:", route.params);
-  // }, [route.params]);
-
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
-
-  const onRatingPress = (newRating) => {
-    setRating(newRating);
-  };
-
-  const handleSubmit = () => {
-    if (!rating || !comment.trim()) {
-      Alert.alert("Peringatan", "Harap isi rating dan komentar sebelum mengirim ulasan.");
-      return;
-    }
-
-    Alert.alert("Sukses", "Ulasan telah disimpan!");
+    console.log("Route Params di UlasanKuliner:", route.params);
+    console.log("Title yang diterima:", route.params.title);
+  // Fungsi untuk menampilkan rating bintang
+  const renderStars = (rating) => {
+    return (
+      <View style={styles.starContainer}>
+        {[...Array(5)].map((_, index) => (
+          <Icon
+            key={index}
+            name={index < rating ? 'star' : 'star-border'}
+            size={14}
+            color='gold'
+          />
+        ))}
+      </View>
+    );
   };
 
   return (
     <View style={styles.container}>
-      <MyHeader title="Tambah Ulasan" />
+      <MyHeader title="Destinasi Wisata" />
+      <ScrollView>
+        <View style={styles.contentContainer}>
+          {/* JUDUL TOKO ULASAN */}
+          <Text style={styles.tokoTitle}>{title || 'Judul tidak ada'}</Text>
 
-      <ScrollView keyboardShouldPersistTaps="handled">
-        <View style={styles.content}>
-          <Text style={styles.destinasiTitle}>Tambah Ulasan untuk </Text>
+          {/* JUDUL ULASAN */}
+          <View style={styles.ulasanHeader}>
+            <Text style={styles.ulasanTitle}>Ulasan</Text>
+            <View style={styles.divider} />
+          </View>
 
-          <Text style={styles.label}>Rating :</Text>
-          <StarRating rating={rating} onRatingPress={onRatingPress} />
-
-          <Text style={styles.label}>Komentar :</Text>
-          <TextInput
-            style={styles.commentInput}
-            multiline
-            placeholder="Berikan komentar Anda"
-            value={comment}
-            onChangeText={setComment}
-          />
-
-          <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-            <Text style={styles.submitText}>Simpan Ulasan</Text>
-          </TouchableOpacity>
+          {/* LIST ULASAN */}
+          {reviews.map((review, index) => (
+            <View key={index} style={styles.ulasanItem}>
+              <Image source={review.profilePic} style={styles.profilePic} />
+              <View style={styles.ulasanContent}>
+                <Text style={styles.ulasanName}>{review.user}</Text>
+                {renderStars(review.rating)}
+                <Text style={styles.ulasanComment}>{review.comment}</Text>
+              </View>
+            </View>
+          ))}
         </View>
       </ScrollView>
+
+      {/* TOMBOL TAMBAH ULASAN */}
+      <TouchableOpacity 
+        style={styles.tambahUlasanButton} 
+        onPress={() => navigation.navigate('TambahKomentarDestinasi', { title: title })}
+      >
+        <Text style={styles.tambahUlasanText}>Tambah Ulasan</Text>
+      </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
   },
-  content: {
-    padding: 20,
+  contentContainer: {
+    padding: 10,
   },
-  destinasiTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
+  tokoTitle: {
+    fontFamily: fonts.primary[600],
+    fontSize: 20,
+    color: colors.primary, // Pastikan warna teks terlihat
     textAlign: 'center',
-    color: '#C2171D',
-    marginBottom: 20,
+    marginBottom: 10,
   },
-  label: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: 15,
-  },
-  commentInput: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 10,
-    padding: 15,
-    marginTop: 10,
-    height: 120,
-    backgroundColor: '#F5F5F5',
-    textAlignVertical: 'top',
-  },
-  submitButton: {
-    backgroundColor: '#C2171D',
-    paddingVertical: 12,
-    borderRadius: 25,
-    marginTop: 20,
+  ulasanHeader: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
-    elevation: 5,
+    marginBottom: 10,
   },
-  submitText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
+  ulasanTitle: {
+    fontFamily: fonts.primary[600],
+    fontSize: 18,
+    color: colors.black,
   },
-  errorContainer: {
+  divider: {
+    padding: 0.5,
+    width: '100%',
+    backgroundColor: colors.black,
+    left: 10,
+    top: -5,
+  },
+  ulasanItem: {
+    flexDirection: 'row',
+    marginBottom: 10,
+    padding: 10,
+    backgroundColor: colors.lightGray,
+    borderRadius: 5,
+  },
+  profilePic: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginRight: 10,
+  },
+  ulasanContent: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
-  errorText: {
-    color: 'red',
+  ulasanName: {
+    fontFamily: fonts.primary[600],
+    fontSize: 14,
+    color: colors.primary,
+  },
+  starContainer: {
+    flexDirection: 'row',
+    marginVertical: 5,
+  },
+  ulasanComment: {
+    fontFamily: fonts.primary[400],
+    fontSize: 12,
+    textAlign: 'justify',
+  },
+  tambahUlasanButton: {
+    backgroundColor: colors.primary,
+    padding: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  tambahUlasanText: {
+    fontFamily: fonts.primary[600],
     fontSize: 16,
-    fontWeight: 'bold',
+    color: colors.white,
   },
 });
+
+export default UlasanDestinasi;

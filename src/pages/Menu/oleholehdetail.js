@@ -6,8 +6,10 @@ import YoutubePlayer from "react-native-youtube-iframe";
 import { Icon } from 'react-native-elements';
 
 const OleholehUMKMDetail = ({ route, navigation }) => {
-  const { item } = route.params; // Ambil data dari route.params
-
+  const { item } = route.params || {};
+    console.log("Data yang diterima di KulinerDetail:", route.params);
+    console.log("Title di DetailKuliner:", item?.title);
+  
   // Fungsi untuk membuka Google Maps
   const openGoogleMaps = async () => {
     const url = item.linklocation; // Ambil link dari data toko
@@ -54,7 +56,10 @@ const OleholehUMKMDetail = ({ route, navigation }) => {
       </View>
     );
   };
-
+  const titleObject = data.find(d => d.type === 'title'); // Cari yang type-nya 'title'
+  const title = titleObject ? titleObject.text : "Judul Tidak Tersedia"; // Ambil text-nya
+  console.log("🔥 TITLE yang dikirim:", title); // Debugging
+  
   const renderItem = ({ item }) => {
     switch (item.type) {
       case 'header':
@@ -125,7 +130,10 @@ const OleholehUMKMDetail = ({ route, navigation }) => {
                 </View>
               </View>
             ))}
-            <TouchableOpacity onPress={() => navigation.navigate('UlasanOleholeh', {reviews: item.reviews,  title: item.title})} style={styles.seeAllButton}>
+            <TouchableOpacity onPress={() => navigation.navigate('UlasanOleholeh', { 
+            title,  
+            reviews: item?.reviews
+           })} style={styles.seeAllButton}>
               <Text style={styles.seeAllText}>Lihat Semua</Text>
               <Icon style={{top:2}} type='ionicon' name='chevron-forward-outline'/>
             </TouchableOpacity>
@@ -135,6 +143,8 @@ const OleholehUMKMDetail = ({ route, navigation }) => {
         return null;
     }
   };
+
+  
 
   return (
     <View style={styles.container}>

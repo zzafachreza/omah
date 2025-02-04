@@ -5,7 +5,7 @@ import { colors, fonts } from '../../utils';
 import { Icon } from 'react-native-elements';
 
 const UlasanOleholeh = ({ route, navigation }) => {
-  const { reviews, title } = route.params; // Ambil data ulasan dan judul toko dari route.params
+  const { title, reviews } = route.params;
 
   // Fungsi untuk menampilkan rating bintang
   const renderStars = (rating) => {

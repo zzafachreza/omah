@@ -41,6 +41,186 @@ const data = [
       },
     ],
   },
+
+  {
+    id: '2',
+    image: require('../../assets/toko_akilah.png'), // Foto utama
+    shopImage: require('../../assets/toko_kue_ende.png'), // Foto toko
+    title: 'Toko Akilah 2R',
+    linklocation:'https://maps.app.goo.gl/HwUeFm2xpuRa4sx58',
+    location: 'Jl. Soekarno Hatta No.RT.01, RT.01, Anggut Atas, Kec. Ratu Samban, Kota Bengkulu, Bengkulu 38222',
+    description: '       Toko Kue Ende merupakan salah satu toko oleh-oleh yang dikelola oleh UMKM di Kota Bengkulu. Ada berbagai pilihan oleh-oleh makanan yang dapat pengunjung beli.',
+    videoUrl: 'https://www.youtube.com/watch?v=QBAEZP2GFHA',
+    reviewImages: [
+      require('../../assets/riview_tokokueende_1.png'),
+      require('../../assets/riview_tokokueende_2.png'),
+      require('../../assets/riview_tokokueende_3.png'),
+    ],
+    openingHours: '08.00 - 21.00 WIB', // Jam Buka
+    priceRange: 'Rp30.000 - Rp100.000', // Range Harga
+    emergencyContact: '(0736) 22098', // Kontak Darurat
+    healthInfo: '(0736) 27070', // Informasi Kesehatan
+    
+    reviews: [
+      {
+        user: 'Nizam Syahputra',
+        profilePic: require('../../assets/profile_nizam.png'), // Foto profil pengulas
+        comment: 'Makanannya enak banget, harganya murah-murah juga. Banyak pilihan oleh-oleh yang bisa dibeli oleh pengunjung.',
+        rating: 5,
+      },
+      {
+        user: 'Aldi Pratama',
+        profilePic: require('../../assets/prodile_aldi.png'), // Foto profil pengulas
+        comment: 'Tempatnya bagus, bersih, penjual ramah. Tempat oleh-oleh yang cocok dikunjungi jika ke Bengkulu. ',
+        rating: 4,
+      },
+    ],
+  },
+
+  {
+    id: '3',
+    image: require('../../assets/syarah_backery.png'), // Foto utama
+    shopImage: require('../../assets/toko_kue_ende.png'), // Foto toko
+    title: 'Syarah Bakery',
+    linklocation:'https://maps.app.goo.gl/HwUeFm2xpuRa4sx58',
+    location: 'Jl. Mahakam 4 No.15, Jl. Gedang, Kec. Gading Cemp., Kota Bengkulu, Bengkulu 38229',
+    description: '       Toko Kue Ende merupakan salah satu toko oleh-oleh yang dikelola oleh UMKM di Kota Bengkulu. Ada berbagai pilihan oleh-oleh makanan yang dapat pengunjung beli.',
+    videoUrl: 'https://www.youtube.com/watch?v=QBAEZP2GFHA',
+    reviewImages: [
+      require('../../assets/riview_tokokueende_1.png'),
+      require('../../assets/riview_tokokueende_2.png'),
+      require('../../assets/riview_tokokueende_3.png'),
+    ],
+    openingHours: '08.00 - 21.00 WIB', // Jam Buka
+    priceRange: 'Rp30.000 - Rp100.000', // Range Harga
+    emergencyContact: '(0736) 22098', // Kontak Darurat
+    healthInfo: '(0736) 27070', // Informasi Kesehatan
+    
+    reviews: [
+      {
+        user: 'Nizam Syahputra',
+        profilePic: require('../../assets/profile_nizam.png'), // Foto profil pengulas
+        comment: 'Makanannya enak banget, harganya murah-murah juga. Banyak pilihan oleh-oleh yang bisa dibeli oleh pengunjung.',
+        rating: 5,
+      },
+      {
+        user: 'Aldi Pratama',
+        profilePic: require('../../assets/prodile_aldi.png'), // Foto profil pengulas
+        comment: 'Tempatnya bagus, bersih, penjual ramah. Tempat oleh-oleh yang cocok dikunjungi jika ke Bengkulu. ',
+        rating: 4,
+      },
+    ],
+  },
+
+
+  {
+    id: '4',
+    image: require('../../assets/toko_umkm.png'), // Foto utama
+    shopImage: require('../../assets/toko_kue_ende.png'), // Foto toko
+    title: 'Toko UMKM Rumah Pen...',
+    linklocation:'https://maps.app.goo.gl/HwUeFm2xpuRa4sx58',
+    location: 'Jl. Soekarno Hatta No.8, Anggut Atas, Kec. Gading Cemp., Kota Bengkulu, Bengkulu 38222',
+    description: '       Toko Kue Ende merupakan salah satu toko oleh-oleh yang dikelola oleh UMKM di Kota Bengkulu. Ada berbagai pilihan oleh-oleh makanan yang dapat pengunjung beli.',
+    videoUrl: 'https://www.youtube.com/watch?v=QBAEZP2GFHA',
+    reviewImages: [
+      require('../../assets/riview_tokokueende_1.png'),
+      require('../../assets/riview_tokokueende_2.png'),
+      require('../../assets/riview_tokokueende_3.png'),
+    ],
+    openingHours: '08.00 - 21.00 WIB', // Jam Buka
+    priceRange: 'Rp30.000 - Rp100.000', // Range Harga
+    emergencyContact: '(0736) 22098', // Kontak Darurat
+    healthInfo: '(0736) 27070', // Informasi Kesehatan
+    
+    reviews: [
+      {
+        user: 'Nizam Syahputra',
+        profilePic: require('../../assets/profile_nizam.png'), // Foto profil pengulas
+        comment: 'Makanannya enak banget, harganya murah-murah juga. Banyak pilihan oleh-oleh yang bisa dibeli oleh pengunjung.',
+        rating: 5,
+      },
+      {
+        user: 'Aldi Pratama',
+        profilePic: require('../../assets/prodile_aldi.png'), // Foto profil pengulas
+        comment: 'Tempatnya bagus, bersih, penjual ramah. Tempat oleh-oleh yang cocok dikunjungi jika ke Bengkulu. ',
+        rating: 4,
+      },
+    ],
+  },
+
+
+  {
+    id: '5',
+    image: require('../../assets/facjir_craft.png'), // Foto utama
+    shopImage: require('../../assets/toko_kue_ende.png'), // Foto toko
+    title: 'Fajri Craft',
+    linklocation:'https://maps.app.goo.gl/HwUeFm2xpuRa4sx58',
+    location: 'Jl. Soekarno Hatta, Anggut Atas, Kec. Ratu Samban, Kota Bengkulu, Bengkulu 38222',
+    description: '       Toko Kue Ende merupakan salah satu toko oleh-oleh yang dikelola oleh UMKM di Kota Bengkulu. Ada berbagai pilihan oleh-oleh makanan yang dapat pengunjung beli.',
+    videoUrl: 'https://www.youtube.com/watch?v=QBAEZP2GFHA',
+    reviewImages: [
+      require('../../assets/riview_tokokueende_1.png'),
+      require('../../assets/riview_tokokueende_2.png'),
+      require('../../assets/riview_tokokueende_3.png'),
+    ],
+    openingHours: '08.00 - 21.00 WIB', // Jam Buka
+    priceRange: 'Rp30.000 - Rp100.000', // Range Harga
+    emergencyContact: '(0736) 22098', // Kontak Darurat
+    healthInfo: '(0736) 27070', // Informasi Kesehatan
+    
+    reviews: [
+      {
+        user: 'Nizam Syahputra',
+        profilePic: require('../../assets/profile_nizam.png'), // Foto profil pengulas
+        comment: 'Makanannya enak banget, harganya murah-murah juga. Banyak pilihan oleh-oleh yang bisa dibeli oleh pengunjung.',
+        rating: 5,
+      },
+      {
+        user: 'Aldi Pratama',
+        profilePic: require('../../assets/prodile_aldi.png'), // Foto profil pengulas
+        comment: 'Tempatnya bagus, bersih, penjual ramah. Tempat oleh-oleh yang cocok dikunjungi jika ke Bengkulu. ',
+        rating: 4,
+      },
+    ],
+  },
+
+
+  {
+    id: '6',
+    image: require('../../assets/sinar_bintang.png'), // Foto utama
+    shopImage: require('../../assets/toko_kue_ende.png'), // Foto toko
+    title: 'Sinar Bintang Snack',
+    linklocation:'https://maps.app.goo.gl/HwUeFm2xpuRa4sx58',
+    location: 'Jl. Merapi Raya No.6, Kebun Tebeng, Kec. Ratu Agung, Kota Bengkulu, Bengkulu 38227',
+    description: '       Toko Kue Ende merupakan salah satu toko oleh-oleh yang dikelola oleh UMKM di Kota Bengkulu. Ada berbagai pilihan oleh-oleh makanan yang dapat pengunjung beli.',
+    videoUrl: 'https://www.youtube.com/watch?v=QBAEZP2GFHA',
+    reviewImages: [
+      require('../../assets/riview_tokokueende_1.png'),
+      require('../../assets/riview_tokokueende_2.png'),
+      require('../../assets/riview_tokokueende_3.png'),
+    ],
+    openingHours: '08.00 - 21.00 WIB', // Jam Buka
+    priceRange: 'Rp30.000 - Rp100.000', // Range Harga
+    emergencyContact: '(0736) 22098', // Kontak Darurat
+    healthInfo: '(0736) 27070', // Informasi Kesehatan
+    
+    reviews: [
+      {
+        user: 'Nizam Syahputra',
+        profilePic: require('../../assets/profile_nizam.png'), // Foto profil pengulas
+        comment: 'Makanannya enak banget, harganya murah-murah juga. Banyak pilihan oleh-oleh yang bisa dibeli oleh pengunjung.',
+        rating: 5,
+      },
+      {
+        user: 'Aldi Pratama',
+        profilePic: require('../../assets/prodile_aldi.png'), // Foto profil pengulas
+        comment: 'Tempatnya bagus, bersih, penjual ramah. Tempat oleh-oleh yang cocok dikunjungi jika ke Bengkulu. ',
+        rating: 4,
+      },
+    ],
+  },
+
+  
   // Tambahkan item lainnya
 ];
 export default function OleholehUMKM({navigation}) {

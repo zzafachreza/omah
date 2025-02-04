@@ -225,7 +225,7 @@ export default function Home({ navigation, route }) {
       />
 
 <MyMenu
-      onPress={() => navigation.navigate('InputSwamedikasi')}
+      onPress={() => navigation.navigate('PanduanWisata')}
       img={require('../../assets/icon_menu6.png')}
       label="Panduan Wisata"
       backgroundColor={colors.primary}

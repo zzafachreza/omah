@@ -38,7 +38,6 @@ export default function MyImageUpload() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Upload Desain</Text>
 
       {/* Display the selected or captured image */}
       {imageUri && (
@@ -52,7 +51,7 @@ export default function MyImageUpload() {
 
       <View style={{padding:10,  borderRadius:10, borderColor:Color.blueGray[300], borderWidth:1}}>
       <TouchableOpacity style={styles.button} onPress={selectImage}>
-          <Text style={styles.buttonText}>Upload File</Text>
+          <Text style={styles.buttonText}>Tambah Gambar</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -68,8 +67,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 15,
     marginBottom: 10,
-    color: colors.primary,
-    fontFamily:fonts.primary[400]
+    color: colors.black,
+    fontFamily:fonts.primary[600],
+    marginLeft:10,
+
   },
   image: {
     width: 200,

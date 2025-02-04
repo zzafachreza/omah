@@ -1,254 +1,186 @@
-import React, { useEffect, useState } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View, KeyboardAvoidingView, Platform, FlatList } from 'react-native';
+import React from 'react';
+import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 import { colors, fonts } from '../../utils';
 import { MyHeader } from '../../components';
 import YoutubePlayer from "react-native-youtube-iframe";
 import { Icon } from 'react-native-elements';
 
-export default function DetailDestinasiWisata({ navigation, route }) {
-  if (!route.params || !route.params.id || !route.params.type) {
-    console.error("Route Params Tidak Lengkap:", route.params);
-    return null; // Bisa tampilkan pesan error
-  }
 
-  const { id, type } = route.params;
-
-  useEffect(() => {
-    console.log("Navigasi:", navigation);
-    console.log("Route Params:", route.params);
-  }, []);
-
-  const dataWisata = {
-    sejarah: [
-      {
-        id: 1,
-        image: require('../../assets/museum_bengkulu_full.png'),
-        title: "Museum Bengkulu",
-        description: `Museum Bengkulu atau Museum Negeri Bengkulu merupakan tempat penyimpanan koleksi benda-benda bersejarah dan adat budaya masing-masing suku yang terdapat di Bengkulu. Diantaranya adalah koleksi pakaian pengantin dan pakaian adat, alat-alat rumah tangga, senjata tradisional, bentuk-bentuk rumah adat, tulisan huruf Ka ga nga dan peninggalan-peninggalan masa prasejarah mulai dari masa peradaban batu sampai perunggu. Selain itu, ada peninggalan kerajinan kain tenun yang terdiri dari kain tenun masyarakat Enggano dan aneka jenis motif kain besurek.`,
-        rating: 4.8,
-        reviews: 389,
-        imageriview: [
-          require('../../assets/riview_1.png'),
-          require('../../assets/riview_2.png'),
-          require('../../assets/riview_3.png'),
-        ],
-        sumber: `Sumber : https://id.wikipedia.org/wiki/Museum_Bengkulu`,
-        ytId: 'OC-ehaljSwI',
-        lokasi: 'Jl. Pembangunan No. 8 Gading Cempaka, Jemb. Kecil Bengkulu',
-        jambuka: `
-        •Senin : 08.00 - 15.00 WIB
-        •Selasa : 08.00 - 15.00 WIB
-        •Rabu : 08.00 - 15.00 WIB
-        •Kamis : 08.00 - 15.00 WIB
-        •Jumat : 08.00 - 15.00 WIB
-        •Sabtu : 08.00 - 15.00 WIB
-        •Minggu : Tutup
-        `,
-        hargaTiket: 'Rp5.000',
-        kontakDarurat: '(0736) 22098',
-        informasiKesehatan: '(0736) 27070',
-        ulasan: [
-          {
-            nama: "Nizam Syahputra",
-            komentar: "Tempatnya bagus, edukatif, petugas ramah. Tempat wisata yang cocok dikunjungi jika ke Bengkulu."
-          },
-          {
-            nama: "Aldi Pratama",
-            komentar: "Tempatnya bagus, edukatif, petugas ramah. Tempat wisata yang cocok dikunjungi jika ke Bengkulu."
-          },
-          {
-            nama: "Nizam Syahputra",
-            komentar: "Tempatnya bagus, edukatif, petugas ramah. Tempat wisata yang cocok dikunjungi jika ke Bengkulu."
-          },
-          {
-            nama: "Aldi Pratama",
-            komentar: "Tempatnya bagus, edukatif, petugas ramah. Tempat wisata yang cocok dikunjungi jika ke Bengkulu."
-          }
-        ]
+export default function DetailDestinasiWisata({route, navigation}) {
+    const { item } = route.params || {};
+    console.log("Data yang diterima di KulinerDetail:", route.params);
+    console.log("Title di DetailKuliner:", item?.title);
+  
+  
+    // Fungsi untuk membuka Google Maps
+    const openGoogleMaps = async () => {
+      const url = item.linklocation; // Ambil link dari data toko
+      console.log('Mencoba membuka link:', url);
+  
+      // Periksa apakah link bisa dibuka
+      const supported = await Linking.canOpenURL(url);
+      console.log('Apakah link didukung?', supported);
+  
+      if (supported) {
+        // Buka link
+        await Linking.openURL(url);
+      } else {
+        alert('Tidak dapat membuka Google Maps. Pastikan aplikasi Google Maps terinstal.');
       }
-    ]
-  };
-
-  const wisataList = dataWisata[type] || [];
-  console.log("Data Wisata:", wisataList); // Debugging 
-  const wisata = wisataList.find((item) => item.id === id);
-  console.log("Wisata Terpilih:", wisata); // Debugging
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [showAllReviews, setShowAllReviews] = useState(false);
-  if (!wisata) {
-    console.error("Wisata tidak ditemukan!");
-    return null; // Bisa juga tampilkan pesan error
-}
-  const toggleReviews = () => {
-    setShowAllReviews(!showAllReviews);
-  };
-
-  const navigateToAddReview = () => {
-    try {
-      console.log("Navigasi ke UlasanDestinasi untuk:", wisata?.title);
-      navigation.navigate('UlasanDestinasi', { namaWisata: wisata.title });
-    } catch (error) {
-      console.error("Error Navigasi:", error);
-    }
-  };
-  // Data untuk FlatList
-  const data = [
-    { type: 'header', content: wisata }, // Header dengan informasi wisata
-    { type: 'ulasan', content: showAllReviews ? wisata.ulasan : wisata.ulasan.slice(0, 2) } // Ulasan
-  ];
-
-  // Render item FlatList
-  const renderItem = ({ item }) => {
-    if (item.type === 'header') {
-      const wisata = item.content;
+    };
+  
+    const data = [
+      { type: 'header', title: 'Destinasi Wisata' },
+      { type: 'title', text: item.title || "Judul Tidak Tersedia" },
+      { type: 'image', source: item.shopImage }, // Foto toko dari data yang dipilih
+      { type: 'reviewImages', sources: item.reviewImages }, // Foto review dari data yang dipilih
+      { type: 'description', text: item.description }, // Deskripsi dari data yang dipilih
+      { type: 'info', label: 'Lokasi', value: item.location, onPress: openGoogleMaps }, // Lokasi dari data yang dipilih (bisa diklik)
+      { type: 'info', label: 'Jam Buka', value: item.openingHours }, // Jam Buka dari data yang dipilih
+      { type: 'info', label: 'Range Harga', value: item.priceRange }, // Range Harga dari data yang dipilih
+      { type: 'info', label: 'Kontak Darurat', value: item.emergencyContact }, // Kontak Darurat dari data yang dipilih
+      { type: 'info', label: 'Informasi Kesehatan', value: item.healthInfo }, // Informasi Kesehatan dari data yang dipilih
+      { type: 'video', videoId: item.videoUrl.split('v=')[1] }, // Video dari data yang dipilih
+      { type: 'reviews', reviews: item.reviews }, // Ulasan dari data yang dipilih
+    ];
+  
+    const titleObject = data.find(d => d.type === 'title'); // Cari yang type-nya 'title'
+  const title = titleObject ? titleObject.text : "Judul Tidak Tersedia"; // Ambil text-nya
+  console.log("🔥 TITLE yang dikirim:", title); // Debugging
+  
+    const renderStars = (rating) => {
       return (
-        <View style={{ padding: 10 }}>
-          {/* IMAGE DAN JUDUL */}
-          <View style={{ alignItems: "center", justifyContent: "center", padding: 0 }}>
-            <Text style={{ fontFamily: fonts.primary[600], color: colors.primary, fontSize: 24, marginBottom: 10, textAlign: "center" }}>
-              {wisata.title}
-            </Text>
-            <Image style={{ width: 340, height: 191, alignSelf: "center", borderRadius: 10 }} source={wisata.image} />
-          </View>
-
-          {/* Riview */}
-          <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", padding: 0, marginTop: 10 }}>
-            {wisata.imageriview.map((riview, index) => (
-              <Image
-                key={index}
-                source={riview}
-                style={{ width: 100, height: 59, borderRadius: 2, marginRight: 5, alignSelf: "center" }}
-              />
-            ))}
-          </View>
-
-          {/* Deskripsi */}
-          <View style={{ padding: 0, marginTop: 10 }}>
-            <Text style={{ fontFamily: fonts.primary[400], color: colors.black, fontSize: 15, marginBottom: 10, textAlign: "justify" }}>
-              {wisata.description}
-            </Text>
-            <Text style={{ fontFamily: fonts.primary[400], fontSize: 10, color: colors.black, textAlign: "left" }}>
-              {wisata.sumber}
-            </Text>
-          </View>
-
-          {/* VIDEO */}
-          <View style={{ marginTop: 20, alignItems: "center", justifyContent: "center" }}>
-            <YoutubePlayer
-              height={164}
-              width={292}
-              play={false}
-              videoId={wisata.ytId}
-              onChangeState={(event) => {
-                if (event === "ended") setIsPlaying(false);
-              }}
+        <View style={styles.starContainer}>
+          {[...Array(5)].map((_, index) => (
+            <Icon 
+              key={index} 
+              name={index < rating ? 'star' : 'star-border'} 
+              size={14} 
+              color='gold' 
             />
-          </View>
-
-          {/* LOKASI DAN JAM */}
-          <View style={{ padding: 5, marginTop: 20 }}>
-            {/* Lokasi */}
-            <View style={{ flexDirection: "row", alignItems: "flex-start", marginBottom: 10 }}>
-              <Text style={{ fontFamily: fonts.primary[500], fontSize: 15, width: 120 }}>Lokasi</Text>
-              <Text style={{ fontFamily: fonts.primary[400], fontSize: 12, flex: 1 }}>: {wisata.lokasi}</Text>
-            </View>
-
-            {/* Jam Buka */}
-            <View style={{ flexDirection: "row", alignItems: "flex-start", marginBottom: 10 }}>
-              <Text style={{ fontFamily: fonts.primary[500], fontSize: 15, width: 120 }}>Jam Buka</Text>
-              <Text style={{ fontFamily: fonts.primary[400], fontSize: 12, flex: 1 }}>: {wisata.jambuka}</Text>
-            </View>
-
-            {/* Harga Tiket */}
-            <View style={{ flexDirection: "row", alignItems: "flex-start", marginBottom: 10 }}>
-              <Text style={{ fontFamily: fonts.primary[500], fontSize: 15, width: 120 }}>Harga Tiket</Text>
-              <Text style={{ fontFamily: fonts.primary[400], fontSize: 12, flex: 1 }}>: {wisata.hargaTiket}</Text>
-            </View>
-
-            {/* Kontak Darurat */}
-            <View style={{ flexDirection: "row", alignItems: "flex-start", marginBottom: 10 }}>
-              <Text style={{ fontFamily: fonts.primary[500], fontSize: 15, width: 120 }}>Kontak Darurat</Text>
-              <Text style={{ fontFamily: fonts.primary[400], fontSize: 12, flex: 1 }}>: {wisata.kontakDarurat}</Text>
-            </View>
-
-            {/* Informasi Kesehatan */}
-            <View style={{ flexDirection: "row", alignItems: "flex-start", marginBottom: 10 }}>
-              <Text style={{ fontFamily: fonts.primary[500], fontSize: 15, width: 120 }}>Informasi Kesehatan</Text>
-              <Text style={{ fontFamily: fonts.primary[400], fontSize: 12, flex: 1 }}>: {wisata.informasiKesehatan}</Text>
-            </View>
-          </View>
-
-          {/* Judul Ulasan */}
-          <View style={{ marginTop: 20 }}>
-            <Text style={{ fontFamily: fonts.primary[600], fontSize: 20, color: colors.primary, marginBottom: 10 }}>
-              Ulasan
-            </Text>
-            <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
-              <Text style={{ fontFamily: fonts.primary[500], fontSize: 16, color: colors.black, marginBottom: 10 }}>
-                {wisata.rating}
-              </Text>
-              <Icon type='ionicon' name='star' color='gold' />
-              <Text>({wisata.reviews})</Text>
-            </View>
-          </View>
-        </View>
-      );
-    } else if (item.type === 'ulasan') {
-      return (
-        <View style={{ paddingHorizontal: 10 }}>
-          {item.content.map((ulasan, index) => (
-            <View key={index} style={{ marginBottom: 10 }}>
-              <Text style={{ fontFamily: fonts.primary[600], fontSize: 14, color: colors.black }}>
-                {ulasan.nama}
-              </Text>
-              <Text style={{ fontFamily: fonts.primary[400], fontSize: 12, color: colors.black }}>
-                {ulasan.komentar}
-              </Text>
-            </View>
           ))}
         </View>
       );
-    }
-  };
-
-  return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{ flex: 1 }}
-    >
-      <View style={{ flex: 1, backgroundColor: colors.white }}>
-        <MyHeader title="Destinasi Wisata" />
-
-        {/* FlatList sebagai pengganti ScrollView */}
-        <FlatList
-          data={data}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={renderItem}
-          ListFooterComponent={
-            <View style={{ padding: 10 }}>
-              {/* Tombol Lihat Semua */}
-              <TouchableOpacity onPress={toggleReviews}>
-                <Text style={{ fontFamily: fonts.primary[500], fontSize: 14, color: colors.primary, textAlign: "center", marginTop: 10 }}>
-                  {showAllReviews ? "Lihat Sedikit" : "Lihat Semua >"}
-                </Text>
-              </TouchableOpacity>
-
-              {/* Tombol Tambah Ulasan */}
-              <TouchableOpacity
-                style={{ backgroundColor: colors.primary, padding: 10, borderRadius: 5, marginTop: 20, alignItems: "center" }}
-                onPress={navigateToAddReview}
-              >
-                <Text style={{ fontFamily: fonts.primary[600], fontSize: 16, color: colors.white }}>
-                  + Tambah Ulasan
-                </Text>
-              </TouchableOpacity>
+    };
+  
+    const renderItem = ({ item }) => {
+      switch (item.type) {
+        case 'header':
+          return <MyHeader title={item.title} />;
+        case 'title':
+          return (
+            <Text style={styles.titleText}>{item.text}</Text>
+          );
+        case 'image':
+          return (
+            <Image style={styles.image} source={item.source} />
+          );
+        case 'reviewImages':
+          return (
+            <View style={styles.reviewContainer}>
+              {item.sources.map((source, index) => (
+                <Image key={index} style={styles.reviewImage} source={source} />
+              ))}
             </View>
+          );
+        case 'description':
+          return (
+            <View style={styles.descriptionContainer}>
+              <Text style={styles.descriptionText}>{item.text}</Text>
+            </View>
+          );
+        case 'video':
+          return (
+            <View style={styles.videoContainer}>
+              <YoutubePlayer height={164} width={292} play={false} videoId={item.videoId} />
+            </View>
+          );
+        case 'info':
+          // Hanya lokasi yang bisa diklik
+          if (item.label === 'Lokasi') {
+            return (
+              <TouchableOpacity onPress={item.onPress} style={styles.infoContainer}>
+                <Text style={styles.infoLabel}>{item.label}</Text>
+                <Text style={styles.infoValue}>{item.value}</Text>
+              </TouchableOpacity>
+            );
+          } else {
+            return (
+              <View style={styles.infoContainer}>
+                <Text style={styles.infoLabel}>{item.label}</Text>
+                <Text style={styles.infoValue}>{item.value}</Text>
+              </View>
+            );
           }
-          overScrollMode="never" // Nonaktifkan scroll bounce di Android
-        />
+        case 'reviews':
+          return (
+            <View style={styles.reviewsContainer}>
+              <View style={{
+                flexDirection:"row",
+                justifyContent:"flex-start",
+                alignItems:"center"
+              }}>
+                <Text style={styles.reviewsTitle}>Ulasan</Text>
+                <View style={{ padding:0.5, backgroundColor:colors.black, width:'100%', top:-5, left:10}}/>
+              </View>
+              {item.reviews.map((review) => (
+                <View key={review.id} style={styles.reviewItem}>
+                  <Image source={require('../../assets/profile_nizam.png')} style={styles.profilePic} />
+                  <View style={styles.reviewContent}>
+                    <Text style={styles.reviewName}>{review.user}</Text>
+                    {renderStars(review.rating)}
+                    <Text style={styles.reviewComment}>{review.comment}</Text>
+                  </View>
+                </View>
+              ))}
+            <TouchableOpacity 
+    onPress={() => {
+      console.log("🔥 ITEM sebelum navigasi:", JSON.stringify(item, null, 2));
+      navigation.navigate('UlasanDestinasi', { 
+          title,  
+          reviews: item?.reviews 
+      });
+    }} 
+    style={styles.seeAllButton}
+  >
+    <Text style={styles.seeAllText}>Lihat Semua</Text>
+    <Icon style={{top:2}} type='ionicon' name='chevron-forward-outline'/>
+  </TouchableOpacity>
+  
+            </View>
+          );
+        default:
+          return null;
+      }
+    };
+  
+    return (
+      <View style={styles.container}>
+        <FlatList data={data} renderItem={renderItem} keyExtractor={(item, index) => index.toString()} />
       </View>
-    </KeyboardAvoidingView>
-  );
-}
-
-const styles = StyleSheet.create({});
+    );
+  };
+  
+  const styles = StyleSheet.create({
+    container: { flex: 1, backgroundColor: colors.white },
+    titleText: { fontFamily: fonts.primary[600], color: colors.primary, fontSize: 20, textAlign: 'center', padding: 10 },
+    image: { width: 340, height: 191, alignSelf: 'center', marginTop: 10 },
+    reviewContainer: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, paddingHorizontal: 10 },
+    reviewImage: { width: 100, height: 59, borderRadius: 5 },
+    descriptionContainer: { marginTop: 10, padding: 10 },
+    descriptionText: { fontFamily: fonts.primary[400], color: colors.black, fontSize: 12, textAlign: 'justify' },
+    videoContainer: { padding: 10, marginTop: 10, alignItems: 'center' },
+    infoContainer: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10, paddingHorizontal: 10 },
+    infoLabel: { fontFamily: fonts.primary[500], fontSize: 15, width: 120 },
+    infoValue: { fontFamily: fonts.primary[400], fontSize: 12, flex: 1 },
+    reviewsContainer: { padding: 10, marginTop: 10 },
+    reviewsTitle: { fontFamily: fonts.primary[600], fontSize: 18, color: colors.black, marginBottom: 10 },
+    reviewItem: { flexDirection: 'row', marginBottom: 10, padding: 10, backgroundColor: colors.lightGray, borderRadius: 5 },
+    profilePic: { width: 40, height: 40, borderRadius: 20, marginRight: 10 },
+    reviewContent: { flex: 1 },
+    starContainer: { flexDirection: 'row', marginVertical: 5 },
+    reviewComment: { fontFamily: fonts.primary[400], fontSize: 12, textAlign: 'justify' },
+    reviewName: { fontFamily: fonts.primary[600], fontSize: 14, color:colors.primary },
+    seeAllButton: {alignItems:"center", flexDirection:"row",justifyContent:"center"}
+  });
+  

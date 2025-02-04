@@ -28,6 +28,11 @@ import PenginepanDetail from './Menu/penginepandetail';
 import UlasanPenginapan from './Menu/ulasanpenginapan';
 import TambahKomentarPenginapan from './Menu/komenpenginapan';
 import SharingPengalaman from './Menu/sharing';
+import TambahPengalaman from './Menu/tambah';
+import PanduanWisata from './Menu/panduan';
+import TambahKomentarDestinasi from './Menu/komendestinasi';
+
+
 
 export {
   Splash,
@@ -60,6 +65,10 @@ export {
   UlasanPenginapan,
   TambahKomentarPenginapan,
   SharingPengalaman,
+  TambahPengalaman,
+  PanduanWisata,
+TambahKomentarDestinasi,
+
 
 
 };
