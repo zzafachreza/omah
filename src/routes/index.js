@@ -70,7 +70,19 @@ import {
   UlasanDestinasi,
   OleholehUMKMDetail,
   UlasanOleholeh,
-  TambahKomentarOleholeh
+  TambahKomentarOleholeh,
+  RekomendasiKuliner,
+  KulinerDetail,
+  UlasanKuliner,
+  TambahKomentarKuliner,
+  SewaTransport,
+  UlasanTransport,
+  TransportDetail,
+  TambahKomentarTransport,
+  PenginepanDetail,
+  UlasanPenginapan,
+  TambahKomentarPenginapan,
+  SharingPengalaman
 
 
 } from '../pages';
@@ -203,6 +215,118 @@ export default function Router() {
 <Stack.Screen
         name="TambahKomentarOleholeh"
         component={TambahKomentarOleholeh}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+<Stack.Screen
+        name="RekomendasiKuliner"
+        component={RekomendasiKuliner}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+<Stack.Screen
+        name="KulinerDetail"
+        component={KulinerDetail}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+<Stack.Screen
+        name="UlasanKuliner"
+        component={UlasanKuliner}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+<Stack.Screen
+        name="TambahKomentarKuliner"
+        component={TambahKomentarKuliner}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+
+<Stack.Screen
+        name="SewaTransport"
+        component={SewaTransport}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+<Stack.Screen
+        name="TransportDetail"
+        component={TransportDetail}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+
+<Stack.Screen
+        name="UlasanTransport"
+        component={UlasanTransport}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+
+<Stack.Screen
+        name="TambahKomentarTransport"
+        component={TambahKomentarTransport}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+
+<Stack.Screen
+        name="PenginepanDetail"
+        component={PenginepanDetail}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+<Stack.Screen
+        name="UlasanPenginapan"
+        component={UlasanPenginapan}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+<Stack.Screen
+        name="TambahKomentarPenginapan"
+        component={TambahKomentarPenginapan}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+<Stack.Screen
+        name="SharingPengalaman"
+        component={SharingPengalaman}
         options={{
           headerShown: false,
 

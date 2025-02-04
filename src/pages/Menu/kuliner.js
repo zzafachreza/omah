@@ -9,20 +9,20 @@ import { Icon } from 'react-native-elements';
 const data = [
   {
     id: '1',
-    image: require('../../assets/oleholeh_1.png'), // Foto utama
-    shopImage: require('../../assets/toko_kue_ende.png'), // Foto toko
-    title: 'Toko Kue Ende',
-    linklocation:'https://maps.app.goo.gl/HwUeFm2xpuRa4sx58',
-    location: 'Lempuing, Ratu Agung, Bengkulu City, Bengkulu',
-    description: '       Toko Kue Ende merupakan salah satu toko oleh-oleh yang dikelola oleh UMKM di Kota Bengkulu. Ada berbagai pilihan oleh-oleh makanan yang dapat pengunjung beli.',
-    videoUrl: 'https://www.youtube.com/watch?v=QBAEZP2GFHA',
+    image: require('../../assets/rm_kampung_persisir.png'), // Foto utama
+    shopImage: require('../../assets/rm_kampung_persisir2.png'), // Foto toko
+    title: 'RM Kampoeng Pesisir',
+    linklocation:'https://maps.app.goo.gl/QKf276pkGCV1HxgJ8',
+    location: 'Nusa Indah, Ratu Agung, Bengkulu City, Bengkulu',
+    description: '    Toko Kue Ende merupakan salah satu tujuan wisata kuliner yang ada di Kota Bengkulu. Ada berbagai pilihan  makanan yang dapat pengunjung nikmati.',
+    videoUrl: 'https://www.youtube.com/watch?v=wn8E4LfeECQ',
     reviewImages: [
-      require('../../assets/riview_tokokueende_1.png'),
-      require('../../assets/riview_tokokueende_2.png'),
-      require('../../assets/riview_tokokueende_3.png'),
+      require('../../assets/riview_rm_kampung_pesisir_1.png'),
+      require('../../assets/riview_rm_kampung_pesisir_2.png'),
+      require('../../assets/riview_rm_kampung_pesisir_3.png'),
     ],
     openingHours: '08.00 - 21.00 WIB', // Jam Buka
-    priceRange: 'Rp30.000 - Rp100.000', // Range Harga
+    priceRange: 'Mulai dari Rp5.000 - Rp35.000', // Range Harga
     emergencyContact: '(0736) 22098', // Kontak Darurat
     healthInfo: '(0736) 27070', // Informasi Kesehatan
     
@@ -30,20 +30,20 @@ const data = [
       {
         user: 'Nizam Syahputra',
         profilePic: require('../../assets/profile_nizam.png'), // Foto profil pengulas
-        comment: 'Makanannya enak banget, harganya murah-murah juga. Banyak pilihan oleh-oleh yang bisa dibeli oleh pengunjung.',
+        comment: 'Makanannya enak banget, harganya murah-murah juga. Banyak pilihan makanan yang bisa dibeli oleh pengunjung.',
         rating: 5,
       },
       {
         user: 'Aldi Pratama',
         profilePic: require('../../assets/prodile_aldi.png'), // Foto profil pengulas
-        comment: 'Tempatnya bagus, bersih, penjual ramah. Tempat oleh-oleh yang cocok dikunjungi jika ke Bengkulu. ',
+        comment: 'Tempatnya bagus, bersih, penjual ramah. Tempat kulliner yang cocok dikunjungi jika ke Bengkulu. ',
         rating: 4,
       },
     ],
   },
   // Tambahkan item lainnya
 ];
-export default function OleholehUMKM({navigation}) {
+export default function RekomendasiKuliner({navigation}) {
   const renderItem = ({ item }) => (
     <View style={{
       padding: 10,
@@ -92,7 +92,7 @@ export default function OleholehUMKM({navigation}) {
         alignItems: "center",
         marginTop: -20
       }}>
-        <TouchableNativeFeedback  onPress={() => navigation.navigate('OleholehUMKMDetail', { item })}>
+        <TouchableNativeFeedback  onPress={() => navigation.navigate('KulinerDetail', {item})}>
           <View style={{
             padding: 10,
             backgroundColor: colors.primary,
@@ -114,7 +114,7 @@ export default function OleholehUMKM({navigation}) {
       flex: 1,
       backgroundColor: colors.white,
     }}>
-      <MyHeader title="Oleh-oleh UMKM" />
+      <MyHeader title="Rekomendasi Kuliner" />
 
       <FlatList
         data={data}

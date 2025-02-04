@@ -204,21 +204,21 @@ export default function Home({ navigation, route }) {
       />
 
 <MyMenu
-      onPress={() => navigation.navigate('InputSwamedikasi')}
+      onPress={() => navigation.navigate('RekomendasiKuliner')}
       img={require('../../assets/icon_menu3.png')}
       label="Rekomendasi Kuliner"
       backgroundColor={colors.primary}
       />
 
 <MyMenu
-      onPress={() => navigation.navigate('InputSwamedikasi')}
+      onPress={() => navigation.navigate('SewaTransport')}
       img={require('../../assets/icon_menu4.png')}
       label="Sewa Transport & Penginapan"
       backgroundColor={colors.primary}
       />
 
 <MyMenu
-      onPress={() => navigation.navigate('InputSwamedikasi')}
+      onPress={() => navigation.navigate('SharingPengalaman')}
       img={require('../../assets/icon_menu5.png')}
       label="Sharing Pengalaman"
       backgroundColor={colors.primary}

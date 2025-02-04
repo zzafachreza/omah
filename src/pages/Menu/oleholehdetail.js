@@ -1,6 +1,5 @@
-// OleholehUMKMDetail.js
 import React from 'react';
-import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 import { colors, fonts } from '../../utils';
 import { MyHeader } from '../../components';
 import YoutubePlayer from "react-native-youtube-iframe";
@@ -9,14 +8,30 @@ import { Icon } from 'react-native-elements';
 const OleholehUMKMDetail = ({ route, navigation }) => {
   const { item } = route.params; // Ambil data dari route.params
 
+  // Fungsi untuk membuka Google Maps
+  const openGoogleMaps = async () => {
+    const url = item.linklocation; // Ambil link dari data toko
+    console.log('Mencoba membuka link:', url);
+
+    // Periksa apakah link bisa dibuka
+    const supported = await Linking.canOpenURL(url);
+    console.log('Apakah link didukung?', supported);
+
+    if (supported) {
+      // Buka link
+      await Linking.openURL(url);
+    } else {
+      alert('Tidak dapat membuka Google Maps. Pastikan aplikasi Google Maps terinstal.');
+    }
+  };
+
   const data = [
     { type: 'header', title: 'Oleh-oleh UMKM' },
     { type: 'title', text: item.title }, // Judul dari data yang dipilih
     { type: 'image', source: item.shopImage }, // Foto toko dari data yang dipilih
     { type: 'reviewImages', sources: item.reviewImages }, // Foto review dari data yang dipilih
     { type: 'description', text: item.description }, // Deskripsi dari data yang dipilih
-    { type: 'info', label: '', value: item.linklocation }, // Lokasi dari data yang dipilih
-    { type: 'info', label: 'Lokasi', value: item.location }, // Lokasi dari data yang dipilih
+    { type: 'info', label: 'Lokasi', value: item.location, onPress: openGoogleMaps }, // Lokasi dari data yang dipilih (bisa diklik)
     { type: 'info', label: 'Jam Buka', value: item.openingHours }, // Jam Buka dari data yang dipilih
     { type: 'info', label: 'Range Harga', value: item.priceRange }, // Range Harga dari data yang dipilih
     { type: 'info', label: 'Kontak Darurat', value: item.emergencyContact }, // Kontak Darurat dari data yang dipilih
@@ -73,12 +88,22 @@ const OleholehUMKMDetail = ({ route, navigation }) => {
           </View>
         );
       case 'info':
-        return (
-          <View style={styles.infoContainer}>
-            <Text style={styles.infoLabel}>{item.label}</Text>
-            <Text style={styles.infoValue}>{item.value}</Text>
-          </View>
-        );
+        // Hanya lokasi yang bisa diklik
+        if (item.label === 'Lokasi') {
+          return (
+            <TouchableOpacity onPress={item.onPress} style={styles.infoContainer}>
+              <Text style={styles.infoLabel}>{item.label}</Text>
+              <Text style={styles.infoValue}>{item.value}</Text>
+            </TouchableOpacity>
+          );
+        } else {
+          return (
+            <View style={styles.infoContainer}>
+              <Text style={styles.infoLabel}>{item.label}</Text>
+              <Text style={styles.infoValue}>{item.value}</Text>
+            </View>
+          );
+        }
       case 'reviews':
         return (
           <View style={styles.reviewsContainer}>
