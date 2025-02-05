@@ -66,9 +66,13 @@ export default function TambahKomentarDestinasi({ route, navigation })  {
           />
 
           {/* TOMBOL TAMBAH ULASAN */}
-          <TouchableOpacity style={styles.tambahUlasanButton} onPress={handleTambahUlasan}>
-            <Text style={styles.tambahUlasanText}>Tambah Ulasan</Text>
+         <View style={{
+          padding:50
+         }}>
+         <TouchableOpacity style={styles.tambahUlasanButton} onPress={handleTambahUlasan}>
+            <Text style={styles.tambahUlasanText}>Simpan Ulasan</Text>
           </TouchableOpacity>
+         </View>
         </View>
       </ScrollView>
     </View>
@@ -124,7 +128,7 @@ const styles = StyleSheet.create({
   tambahUlasanButton: {
     backgroundColor: colors.primary,
     padding: 15,
-    borderRadius: 5,
+    borderRadius: 100,
     alignItems: 'center',
   },
   tambahUlasanText: {

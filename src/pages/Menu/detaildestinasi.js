@@ -6,6 +6,7 @@ import YoutubePlayer from "react-native-youtube-iframe";
 import { Icon } from 'react-native-elements';
 
 
+
 export default function DetailDestinasiWisata({route, navigation}) {
     const { item } = route.params || {};
     console.log("Data yang diterima di KulinerDetail:", route.params);
@@ -35,14 +36,16 @@ export default function DetailDestinasiWisata({route, navigation}) {
       { type: 'image', source: item.shopImage }, // Foto toko dari data yang dipilih
       { type: 'reviewImages', sources: item.reviewImages }, // Foto review dari data yang dipilih
       { type: 'description', text: item.description }, // Deskripsi dari data yang dipilih
+      { type: 'video', videoId: item.videoUrl.split('v=')[1] }, // Video dari data yang dipilih
       { type: 'info', label: 'Lokasi', value: item.location, onPress: openGoogleMaps }, // Lokasi dari data yang dipilih (bisa diklik)
-      { type: 'info', label: 'Jam Buka', value: item.openingHours }, // Jam Buka dari data yang dipilih
-      { type: 'info', label: 'Range Harga', value: item.priceRange }, // Range Harga dari data yang dipilih
+      { type: 'infojam', label: 'Jam Buka', openingHours: item.openingHours},
+      { type: 'info', label: 'Harga Tiket', value: item.priceRange }, // Range Harga dari data yang dipilih
       { type: 'info', label: 'Kontak Darurat', value: item.emergencyContact }, // Kontak Darurat dari data yang dipilih
       { type: 'info', label: 'Informasi Kesehatan', value: item.healthInfo }, // Informasi Kesehatan dari data yang dipilih
-      { type: 'video', videoId: item.videoUrl.split('v=')[1] }, // Video dari data yang dipilih
       { type: 'reviews', reviews: item.reviews }, // Ulasan dari data yang dipilih
     ];
+
+ 
   
     const titleObject = data.find(d => d.type === 'title'); // Cari yang type-nya 'title'
   const title = titleObject ? titleObject.text : "Judul Tidak Tersedia"; // Ambil text-nya
@@ -83,32 +86,50 @@ export default function DetailDestinasiWisata({route, navigation}) {
               ))}
             </View>
           );
-        case 'description':
-          return (
-            <View style={styles.descriptionContainer}>
-              <Text style={styles.descriptionText}>{item.text}</Text>
-            </View>
-          );
         case 'video':
           return (
             <View style={styles.videoContainer}>
               <YoutubePlayer height={164} width={292} play={false} videoId={item.videoId} />
             </View>
+           
           );
+        case 'description':
+          return (
+            <View style={styles.descriptionContainer}>
+            <Text style={styles.descriptionText}>{item.text}</Text>
+          </View>
+          );
+
+          case 'infojam':
+            return (
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10, paddingHorizontal: 10 }}>
+                <Text style={styles.infoLabel}>{item.label}</Text>
+                <Text>:</Text>
+                <View style={{ flex: 1 }}>
+                  {item.openingHours.map((opening, index) => (
+                    <View key={index} style={{ flexDirection: 'row', marginBottom: 5 }}>
+                  
+                      <Text style={{ fontFamily: fonts.primary[400], fontSize: 12, width: 80 }}> •  {opening.hari}</Text>
+                      <Text style={{ fontFamily: fonts.primary[400], fontSize: 12 }}>: {opening.jam}</Text>
+                    </View>
+                  ))}
+                </View>
+              </View>
+            );
         case 'info':
           // Hanya lokasi yang bisa diklik
           if (item.label === 'Lokasi') {
             return (
               <TouchableOpacity onPress={item.onPress} style={styles.infoContainer}>
                 <Text style={styles.infoLabel}>{item.label}</Text>
-                <Text style={styles.infoValue}>{item.value}</Text>
+                <Text style={styles.infoValue}>: {item.value}</Text>
               </TouchableOpacity>
             );
           } else {
             return (
               <View style={styles.infoContainer}>
                 <Text style={styles.infoLabel}>{item.label}</Text>
-                <Text style={styles.infoValue}>{item.value}</Text>
+                <Text style={styles.infoValue}>: {item.value}</Text>
               </View>
             );
           }
@@ -169,9 +190,9 @@ export default function DetailDestinasiWisata({route, navigation}) {
     reviewImage: { width: 100, height: 59, borderRadius: 5 },
     descriptionContainer: { marginTop: 10, padding: 10 },
     descriptionText: { fontFamily: fonts.primary[400], color: colors.black, fontSize: 12, textAlign: 'justify' },
-    videoContainer: { padding: 10, marginTop: 10, alignItems: 'center' },
+    videoContainer: { padding: 10, marginTop: 10, alignItems: 'center', marginBottom:20 },
     infoContainer: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10, paddingHorizontal: 10 },
-    infoLabel: { fontFamily: fonts.primary[500], fontSize: 15, width: 120 },
+    infoLabel: { fontFamily: fonts.primary[400], fontSize: 12, width: 120 },
     infoValue: { fontFamily: fonts.primary[400], fontSize: 12, flex: 1 },
     reviewsContainer: { padding: 10, marginTop: 10 },
     reviewsTitle: { fontFamily: fonts.primary[600], fontSize: 18, color: colors.black, marginBottom: 10 },

@@ -13,22 +13,22 @@ export default function DestinasiWisata({ navigation }) {
       title: 'Museum Bengkulu',
       linklocation: 'https://maps.app.goo.gl/DusbrqnhUvP3UaWb7',
       location: 'Jl. Pembangunan No. 8 Gading Cempaka, Jemb. Kecil Bengkulu',
-      description: 'Toko Kue Ende merupakan salah satu tujuan wisata kuliner yang ada di Kota Bengkulu. Ada berbagai pilihan makanan yang dapat pengunjung nikmati.',
+      description: '  Museum Bengkulu atau Museum Negeri Bengkulu merupakan tempat penyimpanan koleksi benda-benda bersejarah dan adat budaya masing-masing suku yang terdapat di Bengkulu. Diantaranya adalah koleksi pakaian pengantin dan pakaian adat, alat-alat rumah tangga, senjata tradisional, bentuk-bentuk rumah adat, tulisan huruf Ka ga nga dan peninggalan-peninggalan masa prasejarah mulai dari masa peradaban batu sampai perunggu. Selain itu, ada peninggalan kerajinan kain tenun yang terdiri dari kain tenun masyarakat Enggano dan aneka jenis motif kain besurek.',
       videoUrl: 'https://www.youtube.com/watch?v=OC-ehaljSwI',
       reviewImages: [
         require('../../assets/riview_rm_kampung_pesisir_1.png'),
         require('../../assets/riview_rm_kampung_pesisir_2.png'),
         require('../../assets/riview_rm_kampung_pesisir_3.png'),
       ],
-      openingHours: `
-      Senin      : 08.00 - 15.00 WIB
-      Selasa     : 08.00 - 15.00 WIB
-      Rabu       : 08.00 - 15.00 WIB
-      Kamis      : 08.00 - 15.00 WIB
-      Jumat      : 08.00 - 15.00 WIB
-      Sabtu      : 08.00 - 15.00 WIB
-      Minggu     : Tutup
-      `,
+      openingHours: [
+        { hari: 'Senin', jam: '08.00 - 15.00 WIB' },
+        { hari: 'Selasa', jam: '08.00 - 15.00 WIB' },
+        { hari: 'Rabu', jam: '08.00 - 15.00 WIB' },
+        { hari: 'Kamis', jam: '08.00 - 15.00 WIB' },
+        { hari: 'Jumat', jam: '08.00 - 15.00 WIB' },
+        { hari: 'Sabtu', jam: '08.00 - 15.00 WIB' },
+        { hari: 'Minggu', jam: 'Tutup' },
+      ],
       priceRange: 'Rp5.000',
       emergencyContact: '(0736) 22098',
       healthInfo: '(0736) 27070',

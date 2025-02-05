@@ -22,7 +22,7 @@ const data = [
       require('../../assets/riview_tokokueende_3.png'),
     ],
     openingHours: '08.00 - 21.00 WIB', // Jam Buka
-    priceRange: 'Rp30.000 - Rp100.000', // Range Harga
+    priceRange: 'Mulai dari Rp30.000 - Rp100.000', // Range Harga
     emergencyContact: '(0736) 22098', // Kontak Darurat
     healthInfo: '(0736) 27070', // Informasi Kesehatan
     
@@ -57,7 +57,7 @@ const data = [
       require('../../assets/riview_tokokueende_3.png'),
     ],
     openingHours: '08.00 - 21.00 WIB', // Jam Buka
-    priceRange: 'Rp30.000 - Rp100.000', // Range Harga
+    priceRange: 'Mulai dari Rp30.000 - Rp100.000', // Range Harga
     emergencyContact: '(0736) 22098', // Kontak Darurat
     healthInfo: '(0736) 27070', // Informasi Kesehatan
     

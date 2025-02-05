@@ -33,12 +33,12 @@ const OleholehUMKMDetail = ({ route, navigation }) => {
     { type: 'image', source: item.shopImage }, // Foto toko dari data yang dipilih
     { type: 'reviewImages', sources: item.reviewImages }, // Foto review dari data yang dipilih
     { type: 'description', text: item.description }, // Deskripsi dari data yang dipilih
+    { type: 'video', videoId: item.videoUrl.split('v=')[1] }, // Video dari data yang dipilih
     { type: 'info', label: 'Lokasi', value: item.location, onPress: openGoogleMaps }, // Lokasi dari data yang dipilih (bisa diklik)
     { type: 'info', label: 'Jam Buka', value: item.openingHours }, // Jam Buka dari data yang dipilih
     { type: 'info', label: 'Range Harga', value: item.priceRange }, // Range Harga dari data yang dipilih
     { type: 'info', label: 'Kontak Darurat', value: item.emergencyContact }, // Kontak Darurat dari data yang dipilih
     { type: 'info', label: 'Informasi Kesehatan', value: item.healthInfo }, // Informasi Kesehatan dari data yang dipilih
-    { type: 'video', videoId: item.videoUrl.split('v=')[1] }, // Video dari data yang dipilih
     { type: 'reviews', reviews: item.reviews }, // Ulasan dari data yang dipilih
   ];
 
@@ -98,14 +98,14 @@ const OleholehUMKMDetail = ({ route, navigation }) => {
           return (
             <TouchableOpacity onPress={item.onPress} style={styles.infoContainer}>
               <Text style={styles.infoLabel}>{item.label}</Text>
-              <Text style={styles.infoValue}>{item.value}</Text>
+              <Text style={styles.infoValue}>: {item.value}</Text>
             </TouchableOpacity>
           );
         } else {
           return (
             <View style={styles.infoContainer}>
               <Text style={styles.infoLabel}>{item.label}</Text>
-              <Text style={styles.infoValue}>{item.value}</Text>
+              <Text style={styles.infoValue}>: {item.value}</Text>
             </View>
           );
         }
@@ -161,10 +161,10 @@ const styles = StyleSheet.create({
   reviewImage: { width: 100, height: 59, borderRadius: 5 },
   descriptionContainer: { marginTop: 10, padding: 10 },
   descriptionText: { fontFamily: fonts.primary[400], color: colors.black, fontSize: 12, textAlign: 'justify' },
-  videoContainer: { padding: 10, marginTop: 10, alignItems: 'center' },
+  videoContainer: { padding: 10, marginTop: 10, alignItems: 'center', marginBottom:20 },
   infoContainer: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10, paddingHorizontal: 10 },
-  infoLabel: { fontFamily: fonts.primary[500], fontSize: 15, width: 120 },
-  infoValue: { fontFamily: fonts.primary[400], fontSize: 12, flex: 1 },
+  infoLabel: { fontFamily: fonts.primary[40], fontSize: 12, width: 120 },
+  infoValue: { fontFamily: fonts.primary[400], fontSize: 12, flex: 1, left:0 },
   reviewsContainer: { padding: 10, marginTop: 10 },
   reviewsTitle: { fontFamily: fonts.primary[600], fontSize: 18, color: colors.black, marginBottom: 10 },
   reviewItem: { flexDirection: 'row', marginBottom: 10, padding: 10, backgroundColor: colors.lightGray, borderRadius: 5 },

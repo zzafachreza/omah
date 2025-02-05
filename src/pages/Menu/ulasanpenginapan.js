@@ -54,12 +54,22 @@ const UlasanPenginapan = ({ route, navigation }) => {
       </ScrollView>
 
       {/* TOMBOL TAMBAH ULASAN */}
-      <TouchableOpacity 
+      <View style={{
+        padding:50
+      }}>
+<TouchableOpacity 
         style={styles.tambahUlasanButton} 
         onPress={() => navigation.navigate('TambahKomentarPenginapan', { title: title })}
       >
-        <Text style={styles.tambahUlasanText}>Tambah Ulasan</Text>
+               <Icon style={{
+                                    marginRight:5,
+                                    top:-2
+                                  }} type='ionicon' name='add-outline' size={25} color={colors.white}/>
+                                    <Text style={styles.tambahUlasanText}>Tambah Ulasan</Text>
+         
       </TouchableOpacity>
+      </View>
+      
     </View>
   );
 };
@@ -132,6 +142,8 @@ const styles = StyleSheet.create({
     padding: 15,
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection:'row',
+    borderRadius:100,
   },
   tambahUlasanText: {
     fontFamily: fonts.primary[600],
