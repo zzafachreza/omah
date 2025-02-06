@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   descriptionText: { fontFamily: fonts.primary[400], color: colors.black, fontSize: 12, textAlign: 'justify' },
   videoContainer: { padding: 10, marginTop: 10, alignItems: 'center', marginBottom:20 },
   infoContainer: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10, paddingHorizontal: 10 },
-  infoLabel: { fontFamily: fonts.primary[40], fontSize: 12, width: 120 },
+  infoLabel: { fontFamily: fonts.primary[400], fontSize: 12, width: 120 },
   infoValue: { fontFamily: fonts.primary[400], fontSize: 12, flex: 1, left:0 },
   reviewsContainer: { padding: 10, marginTop: 10 },
   reviewsTitle: { fontFamily: fonts.primary[600], fontSize: 18, color: colors.black, marginBottom: 10 },
