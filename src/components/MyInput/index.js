@@ -12,6 +12,7 @@ export default function MyInput({
   borderColor = Color.blueGray[300],
   backgroundColor = colors.white,
   editable,
+  height = 45,
   icon = true,
   maxLength,
   iconname,
@@ -42,7 +43,7 @@ export default function MyInput({
         marginLeft: 10
       }}>{label}</Text>
       <View style={{
-        height: 40,
+        height: height,
         flexDirection: 'row', // Gunakan row agar TextInput dan label bisa sejajar
         alignItems: 'center', // Align center agar teks sejajar vertikal
         borderWidth: 1,

@@ -35,7 +35,7 @@ export default function MyHeader({ onPress, color = colors.white, title, icon = 
 
 
       <Text style={{
-        ...fonts.headline2,
+        ...fonts.headline4,
         flex: 1,
         textAlign: 'center',
         marginLeft: -25,

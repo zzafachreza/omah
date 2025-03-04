@@ -7,6 +7,7 @@ import { api_token, apiURL, getData, MYAPP, storeData } from '../../utils/localS
 import { showMessage } from 'react-native-flash-message'
 import axios from 'axios'
 import MyLoading from '../../components/MyLoading'
+import { useToast } from 'react-native-toast-notifications'
 
 export default function Login({ navigation }) {
 
@@ -17,6 +18,7 @@ export default function Login({ navigation }) {
     });
 
     const [comp, setComp] = useState({});
+    const toast = useToast();
 
 
 
@@ -49,7 +51,9 @@ export default function Login({ navigation }) {
                 if (response.data.status === 200) {
                     setLoading(true);
                     console.log(response.data);
-                    Alert.alert(MYAPP, "Login Berhasil!");
+                    toast.show('Selamat, kamu berhasil masuk', {
+                        type: 'success'
+                    })
                     storeData('user', response.data.data)
                     navigation.replace('MainApp');
                 } else if (response.data.status === 404) {
@@ -101,99 +105,99 @@ export default function Login({ navigation }) {
 
             <ScrollView contentContainerStyle={{
                 flexGrow: 1,
-               
+
             }}>
 
                 <View style={{
-                    height:'100%',
-                   
-                    alignContent:'center',
-                    justifyContent:'center',
+                    height: '100%',
+
+                    alignContent: 'center',
+                    justifyContent: 'center',
                 }}>
-                <View style={{
-                    padding:10,
-                    alignItems:"center"
-                }}>
-                    <Image style={{
-                        width:198,
-                        height:209,
-                        alignSelf:'center'
-                    }} source={require('../../assets/logologin.png')}/>
-                </View>
-
-                <View style={{
-                    padding: 10,
-
-                }}>
-
-                    <Text style={{
-                        fontFamily: fonts.primary[700],
-                        fontSize: 30,
-                        textAlign: "center",
-                        color: colors.primary,
-                    }}>Masuk</Text>
-
-
-
-                    {/* form */}
-
                     <View style={{
                         padding: 10,
-                        marginTop: '5%'
+                        alignItems: "center"
                     }}>
-
-                        {/* USERNAME */}
-                        <View>
-                            <MyInput
-                                placeholder="Username"
-                                value={kirim.username}
-                                onChangeText={(x) => setKirim({ ...kirim, 'username': x })}
-                            />
-                        </View>
-
-                        {/* passowrd */}
-                        <View style={{
-                            marginTop: 0
-                        }}>
-                            <MyInput
-                                placeholder="Kata Sandi"
-                                secureTextEntry={true}
-                                value={kirim.password}
-                                onChangeText={(x) => setKirim({ ...kirim, 'password': x })}
-                            />
-                        </View>
-
-                        {/* button */}
-                        <View>
-                            <MyButton onPress={handleLogin} title="Masuk" />
-                        </View>
-
+                        <Image style={{
+                            width: 198,
+                            height: 209,
+                            alignSelf: 'center'
+                        }} source={require('../../assets/logologin.png')} />
                     </View>
 
-
-                    {/* register */}
-
                     <View style={{
                         padding: 10,
-                        marginTop: "5%"
+
                     }}>
 
-                        {/* register */}
-                        <TouchableWithoutFeedback onPress={() => navigation.navigate('Register')}>
+                        <Text style={{
+                            fontFamily: fonts.primary[700],
+                            fontSize: 30,
+                            textAlign: "center",
+                            color: colors.primary,
+                        }}>Masuk</Text>
+
+
+
+                        {/* form */}
+
+                        <View style={{
+                            padding: 10,
+                            marginTop: '5%'
+                        }}>
+
+                            {/* USERNAME */}
                             <View>
-                                <Text style={{
-                                    fontFamily: fonts.primary[600],
-                                    textAlign: "center"
-                                }}>
-                                    Belum memiliki akun? Silakan <Text style={{
-                                        color: colors.primary,
-                                    }}>Daftar</Text>
-                                </Text>
+                                <MyInput
+                                    placeholder="Username"
+                                    value={kirim.username}
+                                    onChangeText={(x) => setKirim({ ...kirim, 'username': x })}
+                                />
                             </View>
-                        </TouchableWithoutFeedback>
-                        <MyGap jarak={20} />
-                        {/* lupa kata sandi */}
-                        {/* <TouchableWithoutFeedback onPress={() => {
+
+                            {/* passowrd */}
+                            <View style={{
+                                marginTop: 0
+                            }}>
+                                <MyInput
+                                    placeholder="Kata Sandi"
+                                    secureTextEntry={true}
+                                    value={kirim.password}
+                                    onChangeText={(x) => setKirim({ ...kirim, 'password': x })}
+                                />
+                            </View>
+
+                            {/* button */}
+                            <View>
+                                <MyButton onPress={handleLogin} title="Masuk" />
+                            </View>
+
+                        </View>
+
+
+                        {/* register */}
+
+                        <View style={{
+                            padding: 10,
+                            marginTop: "5%"
+                        }}>
+
+                            {/* register */}
+                            <TouchableWithoutFeedback onPress={() => navigation.navigate('Register')}>
+                                <View>
+                                    <Text style={{
+                                        fontFamily: fonts.primary[600],
+                                        textAlign: "center"
+                                    }}>
+                                        Belum memiliki akun? Silakan <Text style={{
+                                            color: colors.primary,
+                                        }}>Daftar</Text>
+                                    </Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                            <MyGap jarak={20} />
+                            {/* lupa kata sandi */}
+                            {/* <TouchableWithoutFeedback onPress={() => {
                             Linking.openURL('https://wa.me/' + comp.tlp + '?text=Halo *Admin* Saya lupa kata sandi . . .')
                         }}>
                             <View>
@@ -205,9 +209,9 @@ export default function Login({ navigation }) {
                                     Lupa Kata Sandi </Text>
                             </View>
                         </TouchableWithoutFeedback> */}
-                    </View>
+                        </View>
 
-                </View>
+                    </View>
                 </View>
             </ScrollView>
 

@@ -31,11 +31,13 @@ import SharingPengalaman from './Menu/sharing';
 import TambahPengalaman from './Menu/tambah';
 import PanduanWisata from './Menu/panduan';
 import TambahKomentarDestinasi from './Menu/komendestinasi';
+import Detail from './Menu/Detail';
 
 
 
 export {
   Splash,
+  Detail,
   Home,
   Login,
   Account,
@@ -67,7 +69,7 @@ export {
   SharingPengalaman,
   TambahPengalaman,
   PanduanWisata,
-TambahKomentarDestinasi,
+  TambahKomentarDestinasi,
 
 
 

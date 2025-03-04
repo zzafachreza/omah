@@ -1,26 +1,31 @@
-import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
-import React from 'react';
+import { View, Text, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { colors, fonts } from '../../utils';
 import { MyHeader } from '../../components';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useIsFocused } from '@react-navigation/native';
+import axios from 'axios';
+import { apiURL, webURL } from '../../utils/localStorage';
 
-const dataPanduan = [
-  {
-    id: '1',
-    title: 'Rute Perjalanan yang Direkomendasikan',
-    image: require('../../assets/rute_perjalanan.png'), // Sesuaikan dengan lokasi file
-    description: 'Panduan ini memberikan rekomendasi rute perjalanan terbaik untuk wisatawan agar perjalanan lebih efisien dan menyenangkan.',
-  },
-  {
-    id: '2',
-    title: 'Tips dan Saran untuk Pengunjung',
-    image: require('../../assets/tips_saran.png'),
-    description: 'Panduan ini berisi berbagai tips agar wisata lebih hemat, mulai dari transportasi murah hingga tempat makan dengan harga terjangkau.',
-  },
-  // Tambahkan data lain jika perlu
-];
 
-export default function PanduanWisata({navigation}) {
+
+
+export default function PanduanWisata({ navigation }) {
+
+
+  const [dataPanduan, setDataPanduan] = useState([]);
+  const isFocused = useIsFocused();
+  const __getTransaksi = () => {
+    axios.post(apiURL + 'panduan').then(res => {
+      console.log(res.data);
+      setDataPanduan(res.data)
+    })
+  }
+  useEffect(() => {
+    if (isFocused) {
+      __getTransaksi()
+    }
+  }, [isFocused])
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
       <MyHeader title="Panduan Wisata" />
@@ -29,62 +34,63 @@ export default function PanduanWisata({navigation}) {
         data={dataPanduan}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View
-            style={{
-              margin: 10,
-              borderRadius: 15,
-              overflow: 'hidden',
-              backgroundColor: '#000',
-            }}
-          >
-            {/* Gambar */}
-            <Image
-              source={item.image}
-              style={{ width: '100%', height: 250, resizeMode: 'cover' }}
-            />
-
-            {/* Overlay untuk judul dan tombol */}
+          <TouchableWithoutFeedback onPress={() => navigation.navigate("PanduanDetail", item)}>
             <View
               style={{
-                position: 'absolute',
-                bottom: 0,
-                width: '100%',
-                padding: 15,
-                backgroundColor: 'rgba(0,0,0,0.6)',
+                margin: 10,
+                borderRadius: 15,
+                overflow: 'hidden',
+                backgroundColor: '#000',
               }}
             >
-              <Text
-                style={{
-                  fontSize: 15,
-                fontFamily:fonts.primary[600],
-                  color: colors.white,
-                  
+              {/* Gambar */}
+              <Image
+                source={{
+                  uri: webURL + item.gambar
                 }}
-              >
-                {item.title}
-              </Text>
+                style={{ width: '100%', height: 250, resizeMode: 'cover' }}
+              />
 
-              {/* Tombol Selengkapnya */}
-              <TouchableOpacity
+              {/* Overlay untuk judul dan tombol */}
+              <View
                 style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginTop: 5,
-                  justifyContent:"flex-end"
+                  position: 'absolute',
+                  bottom: 0,
+                  width: '100%',
+                  padding: 15,
+                  backgroundColor: 'rgba(0,0,0,0.6)',
                 }}
-               onPress={() => navigation.navigate("PanduanDetail", {
-                title: item.title,
-                image: item.image,
-                description: item.description, // Kirim deskripsi
-               })}
               >
-                <Text style={{ color: colors.white, fontSize: 14, fontStyle: 'italic', fontFamily:fonts.primary[400] }}>
-                  Selengkapnya
+                <Text
+                  style={{
+                    fontSize: 15,
+                    fontFamily: fonts.primary[600],
+                    color: colors.white,
+
+                  }}
+                >
+                  {item.judul}
                 </Text>
-                <Icon name="chevron-right" size={18} color="white" />
-              </TouchableOpacity>
+
+                {/* Tombol Selengkapnya */}
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    marginTop: 5,
+                    justifyContent: "flex-end"
+                  }}
+
+                >
+                  <Text style={{ color: colors.white, fontSize: 14, fontStyle: 'italic', fontFamily: fonts.primary[400] }}>
+                    Selengkapnya
+                  </Text>
+                  <Icon name="chevron-right" size={18} color="white" />
+                </View>
+              </View>
             </View>
-          </View>
+          </TouchableWithoutFeedback>
+
         )}
       />
     </View>

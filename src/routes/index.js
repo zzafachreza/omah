@@ -85,7 +85,8 @@ import {
   SharingPengalaman,
   TambahPengalaman,
   PanduanWisata,
-  TambahKomentarDestinasi
+  TambahKomentarDestinasi,
+  Detail
 
 
 } from '../pages';
@@ -104,7 +105,7 @@ const Stack = createStackNavigator();
 
 const MainApp = () => {
   return (
-    <Tab.Navigator initialRouteName='Produk' tabBar={props => <BottomNavigator {...props} />}>
+    <Tab.Navigator initialRouteName='Splash' tabBar={props => <BottomNavigator {...props} />}>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Account" component={Account} />
     </Tab.Navigator>
@@ -113,7 +114,7 @@ const MainApp = () => {
 
 export default function Router() {
   return (
-    <Stack.Navigator initialRouteName='MainApp'>
+    <Stack.Navigator initialRouteName='Splash'>
       <Stack.Screen
         name="Splash"
         component={Splash}
@@ -143,6 +144,16 @@ export default function Router() {
       <Stack.Screen
         name="Register"
         component={Register}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+
+      <Stack.Screen
+        name="Detail"
+        component={Detail}
         options={{
           headerShown: false,
 
@@ -186,7 +197,7 @@ export default function Router() {
         }}
       />
 
-<Stack.Screen
+      <Stack.Screen
         name="TambahKomentarDestinasi"
         component={TambahKomentarDestinasi}
         options={{
@@ -205,7 +216,7 @@ export default function Router() {
         }}
       />
 
-<Stack.Screen
+      <Stack.Screen
         name="OleholehUMKMDetail"
         component={OleholehUMKMDetail}
         options={{
@@ -215,7 +226,7 @@ export default function Router() {
       />
 
 
-<Stack.Screen
+      <Stack.Screen
         name="UlasanOleholeh"
         component={UlasanOleholeh}
         options={{
@@ -225,7 +236,7 @@ export default function Router() {
       />
 
 
-<Stack.Screen
+      <Stack.Screen
         name="TambahKomentarOleholeh"
         component={TambahKomentarOleholeh}
         options={{
@@ -234,7 +245,7 @@ export default function Router() {
         }}
       />
 
-<Stack.Screen
+      <Stack.Screen
         name="RekomendasiKuliner"
         component={RekomendasiKuliner}
         options={{
@@ -243,7 +254,7 @@ export default function Router() {
         }}
       />
 
-<Stack.Screen
+      <Stack.Screen
         name="KulinerDetail"
         component={KulinerDetail}
         options={{
@@ -252,7 +263,7 @@ export default function Router() {
         }}
       />
 
-<Stack.Screen
+      <Stack.Screen
         name="UlasanKuliner"
         component={UlasanKuliner}
         options={{
@@ -261,7 +272,7 @@ export default function Router() {
         }}
       />
 
-<Stack.Screen
+      <Stack.Screen
         name="TambahKomentarKuliner"
         component={TambahKomentarKuliner}
         options={{
@@ -271,7 +282,7 @@ export default function Router() {
       />
 
 
-<Stack.Screen
+      <Stack.Screen
         name="SewaTransport"
         component={SewaTransport}
         options={{
@@ -280,7 +291,7 @@ export default function Router() {
         }}
       />
 
-<Stack.Screen
+      <Stack.Screen
         name="TransportDetail"
         component={TransportDetail}
         options={{
@@ -290,7 +301,7 @@ export default function Router() {
       />
 
 
-<Stack.Screen
+      <Stack.Screen
         name="UlasanTransport"
         component={UlasanTransport}
         options={{
@@ -300,7 +311,7 @@ export default function Router() {
       />
 
 
-<Stack.Screen
+      <Stack.Screen
         name="TambahKomentarTransport"
         component={TambahKomentarTransport}
         options={{
@@ -310,7 +321,7 @@ export default function Router() {
       />
 
 
-<Stack.Screen
+      <Stack.Screen
         name="PenginepanDetail"
         component={PenginepanDetail}
         options={{
@@ -319,7 +330,7 @@ export default function Router() {
         }}
       />
 
-<Stack.Screen
+      <Stack.Screen
         name="UlasanPenginapan"
         component={UlasanPenginapan}
         options={{
@@ -328,7 +339,7 @@ export default function Router() {
         }}
       />
 
-<Stack.Screen
+      <Stack.Screen
         name="TambahKomentarPenginapan"
         component={TambahKomentarPenginapan}
         options={{
@@ -337,7 +348,7 @@ export default function Router() {
         }}
       />
 
-<Stack.Screen
+      <Stack.Screen
         name="SharingPengalaman"
         component={SharingPengalaman}
         options={{
@@ -347,7 +358,7 @@ export default function Router() {
       />
 
 
-<Stack.Screen
+      <Stack.Screen
         name="TambahPengalaman"
         component={TambahPengalaman}
         options={{
@@ -356,7 +367,7 @@ export default function Router() {
         }}
       />
 
-<Stack.Screen
+      <Stack.Screen
         name="PanduanWisata"
         component={PanduanWisata}
         options={{
@@ -365,7 +376,7 @@ export default function Router() {
         }}
       />
 
-<Stack.Screen
+      <Stack.Screen
         name="PanduanDetail"
         component={PanduanDetail}
         options={{

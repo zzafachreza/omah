@@ -37,15 +37,15 @@ export default function Splash({ navigation }) {
       })
     ]).start();
 
-  
+
     setTimeout(() => {
-     getData('user').then(user => {
-      if (user) {
-        navigation.replace("MainApp")
-      } else {
-        navigation.replace("Login")
-      }
-     })
+      getData('user').then(user => {
+        if (!user) {
+          navigation.replace("Login")
+        } else {
+          navigation.replace("MainApp")
+        }
+      })
     }, 1200);
   }, []);
 
@@ -58,7 +58,7 @@ export default function Splash({ navigation }) {
       position: 'relative'
     }}>
 
-      <View  style={{
+      <View style={{
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
@@ -73,14 +73,14 @@ export default function Splash({ navigation }) {
           style={{
             transform: [{ scale: img }],
             width: windowWidth / 1.4,
-            height: windowWidth / 1.4,  
-            marginTop:'28%'
+            height: windowWidth / 1.4,
+            marginTop: '28%'
 
           }}
         />
 
 
-        <ActivityIndicator style={{marginTop:50}} color={colors.primary} size="small" />
+        <ActivityIndicator style={{ marginTop: 50 }} color={colors.primary} size="small" />
 
       </View>
 

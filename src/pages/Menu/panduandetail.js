@@ -1,11 +1,14 @@
 import { View, Text, ScrollView, Image } from 'react-native';
 import React from 'react';
-import { colors, fonts } from '../../utils';
+import { colors, fonts, windowWidth } from '../../utils';
 import { MyHeader } from '../../components';
-
+import { webURL } from '../../utils/localStorage';
+import RenderHTML from 'react-native-render-html';
 export default function PanduanDetail({ route }) {
   // Ambil data dari halaman sebelumnya
-  const { title, image, description } = route.params;
+  const item = route.params;
+  const systemFonts = [fonts.body3.fontFamily, fonts.headline4.fontFamily];
+
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
@@ -14,13 +17,15 @@ export default function PanduanDetail({ route }) {
       <ScrollView>
         <View style={{ padding: 10 }}>
           {/* JUDUL DARI PANDUAN WISATA */}
-          <Text style={{ fontFamily: fonts.primary[600], fontSize: 15, color: colors.primary, textAlign:"center" }}>
-            {title}
+          <Text style={{ fontFamily: fonts.primary[600], fontSize: 15, color: colors.primary, textAlign: "center" }}>
+            {item.judul}
           </Text>
 
           {/* FOTO PANDUAN */}
           <Image
-            source={image}
+            source={{
+              uri: webURL + item.gambar
+            }}
             style={{
               width: '100%',
               height: 200,
@@ -31,15 +36,21 @@ export default function PanduanDetail({ route }) {
           />
 
           {/* DESKRIPSI */}
-          <Text
-            style={{
-              fontFamily: fonts.primary[500],
-              fontSize: 12,
-              textAlign: 'justify',
+          <RenderHTML
+
+            tagsStyles={{
+              p: {
+                fontFamily: fonts.body3.fontFamily,
+                textAlign: 'justify',
+                lineHeight: 20,
+              },
             }}
-          >
-            {description}
-          </Text>
+            systemFonts={systemFonts}
+            contentWidth={windowWidth}
+            source={{
+              html: item.deskripsi
+            }}
+          />
         </View>
       </ScrollView>
     </View>
