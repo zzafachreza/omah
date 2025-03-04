@@ -137,7 +137,7 @@ export default function Register({ navigation }) {
                     }}>
 
                         <Text style={{
-                            fontFamily: fonts.primary[700],
+                            fontFamily: fonts.secondary[800],
                             fontSize: 30,
                             textAlign: "center",
                             color: colors.primary,
@@ -240,7 +240,7 @@ export default function Register({ navigation }) {
                             <TouchableWithoutFeedback onPress={() => navigation.navigate('Login')}>
                                 <View>
                                     <Text style={{
-                                        fontFamily: fonts.primary[600],
+                                        fontFamily: fonts.secondary[600],
                                         textAlign: "center"
                                     }}>
                                         Sudah memiliki akun? Silakan  <Text style={{

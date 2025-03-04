@@ -48,32 +48,31 @@ export default function Login({ navigation }) {
         axios
             .post(apiURL + 'login', kirim)
             .then(response => {
-                if (response.data.status === 200) {
-                    setLoading(true);
-                    console.log(response.data);
-                    toast.show('Selamat, kamu berhasil masuk', {
-                        type: 'success'
-                    })
-                    storeData('user', response.data.data)
-                    navigation.replace('MainApp');
-                } else if (response.data.status === 404) {
-                    setLoading(false)
-                    console.log(response.data);
-                    showMessage({
-                        type: 'default',
-                        color: 'white',
-                        backgroundColor: colors.danger,
-                        message: "Maaf Username atau Password salah!"
-                    })
-                } else {
-                    setLoading(false);
-                    showMessage({
-                        type: 'default',
-                        color: 'white',
-                        backgroundColor: colors.danger,
-                        message: "Kesalahan jaringan!"
-                    })
-                }
+                setTimeout(() => {
+                    if (response.data.status === 200) {
+                        setLoading(true);
+                        console.log(response.data);
+                        toast.show('Selamat, kamu berhasil masuk', {
+                            type: 'success'
+                        })
+                        storeData('user', response.data.data)
+                        navigation.replace('MainApp');
+                    } else if (response.data.status === 404) {
+                        setLoading(false);
+                        toast.show("Maaf Username atau Password salah!", {
+                            type: 'error'
+                        })
+
+                    } else {
+                        setLoading(false);
+                        showMessage({
+                            type: 'default',
+                            color: 'white',
+                            backgroundColor: colors.danger,
+                            message: "Kesalahan jaringan!"
+                        })
+                    }
+                }, 1200)
             })
             .catch(error => {
                 setLoading(false);
@@ -131,7 +130,7 @@ export default function Login({ navigation }) {
                     }}>
 
                         <Text style={{
-                            fontFamily: fonts.primary[700],
+                            fontFamily: fonts.secondary[800],
                             fontSize: 30,
                             textAlign: "center",
                             color: colors.primary,
@@ -186,7 +185,7 @@ export default function Login({ navigation }) {
                             <TouchableWithoutFeedback onPress={() => navigation.navigate('Register')}>
                                 <View>
                                     <Text style={{
-                                        fontFamily: fonts.primary[600],
+                                        fontFamily: fonts.secondary[600],
                                         textAlign: "center"
                                     }}>
                                         Belum memiliki akun? Silakan <Text style={{

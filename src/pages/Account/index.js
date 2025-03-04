@@ -9,6 +9,7 @@ import {
     Alert,
     ActivityIndicator,
     TouchableNativeFeedback,
+    ImageBackground,
 } from 'react-native';
 import { windowWidth, fonts, MyDimensi } from '../../utils/fonts';
 import { apiURL, getData, MYAPP, storeData, urlAPI, urlApp, urlAvatar } from '../../utils/localStorage';
@@ -55,6 +56,13 @@ export default function ({ navigation, route }) {
     const MylistPengaturan = ({ icon = 'location-outline', label, value }) => {
         return (
             <View style={{
+                backgroundColor: colors.white + '99',
+                // flex: 1,
+                padding: 10,
+                height: 80,
+                // borderBottomWidth: 1,
+                borderBottomColor: Color.blueGray[200],
+                marginVertical: 2,
                 flexDirection: 'row',
                 alignItems: 'center',
                 paddingVertical: 10,
@@ -145,82 +153,82 @@ export default function ({ navigation, route }) {
 
             {open &&
 
-                <ScrollView>
+
+                <ImageBackground source={require('../../assets/bghome.png')} style={{
+                    flex: 1,
+                }}>
                     <View style={{
-                        margin: 0,
-                        flex: 1,
+                        paddingBottom: 20,
+                        borderBottomWidth: 1,
+                        borderBottomColor: Color.blueGray[300],
+                        alignItems: 'center',
+                        justifyContent: "center",
+                        backgroundColor: colors.primary,
+                        padding: 10,
+                        borderBottomLeftRadius: 20,
+                        borderBottomRightRadius: 20,
+
+
+
+
                     }}>
                         <View style={{
-                            paddingBottom: 50,
-                            borderBottomWidth: 1,
-                            borderBottomColor: Color.blueGray[300],
+                            width: 120,
+                            height: 120,
+                            borderWidth: 3,
+                            borderColor: Color.blueGray[100],
+                            overflow: 'hidden',
+                            borderRadius: 100,
+                            justifyContent: 'center',
                             alignItems: 'center',
-                            justifyContent: "center",
-                            backgroundColor: colors.primary,
-                            padding: 10,
-                            borderBottomLeftRadius: 20,
-                            borderBottomRightRadius: 20,
-
-
-
-
+                            marginTop: 20
                         }}>
-                            <View style={{
+
+                            <Image source={{
+                                uri: user.file_pengguna
+                            }} style={{
                                 width: 120,
                                 height: 120,
-                                borderWidth: 3,
-                                borderColor: Color.blueGray[100],
-                                overflow: 'hidden',
-                                borderRadius: 100,
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                marginTop: 20
-                            }}>
 
-                                <Image source={{
-                                    uri: user.file_pengguna
-                                }} style={{
-                                    width: 120,
-                                    height: 120,
-
-                                }} />
-
-                            </View>
-
-
-
-
+                            }} />
 
                         </View>
+
+
+
+
+
+                    </View>
+                    <View style={{
+
+
+                        padding: 10, flex: 1, margin: 20,
+                        borderRadius: 20, marginTop: 10
+                    }}>
+
+
+                        <MylistPengaturan label="Nama Lengkap" icon='person-outline' value={user.nama_lengkap} />
+                        <MylistPengaturan label="Username" icon='at' value={user.username} />
+                        <MylistPengaturan label="Telepon" icon='call-outline' value={user.telepon} />
+
+
                         <View style={{
-                            padding: 10, flex: 1, backgroundColor: 'white', margin: 20,
-                            borderRadius: 20, marginTop: 10
+                            padding: 10,
+                            marginTop: '10%'
                         }}>
 
-
-                            <MylistPengaturan label="Nama Lengkap" icon='person-outline' value={user.nama_lengkap} />
-                            <MylistPengaturan label="Username" icon='at' value={user.username} />
-                            <MylistPengaturan label="Telepon" icon='call-outline' value={user.telepon} />
-
-
-                            <View style={{
-                                padding: 10,
-                                marginTop: '10%'
-                            }}>
-
-                                <MyButton colorText={colors.white} iconColor={colors.white} warna={colors.primary} title="Edit Profile" Icons="create-outline" onPress={() => navigation.navigate('AccountEdit', user)} />
-                                <MyGap jarak={10} />
-                                <TouchableNativeFeedback onPress={btnKeluar}>
-                                    <View style={{ padding: 10, flexDirection: "row", justifyContent: "center", alignItems: 'center' }}>
-                                        <Icon style={{ marginRight: 10, marginTop: -5 }} type='ionicon' name='log-out-outline' size={24} color={colors.danger} />
-                                        <Text style={{ fontFamily: fonts.primary[600], color: colors.danger, fontSize: 15 }}>Log Out</Text>
-                                    </View>
-                                </TouchableNativeFeedback>
-                            </View>
+                            <MyButton colorText={colors.white} iconColor={colors.white} warna={colors.primary} title="Edit Profile" Icons="create-outline" onPress={() => navigation.navigate('AccountEdit', user)} />
+                            <MyGap jarak={10} />
+                            <TouchableNativeFeedback onPress={btnKeluar}>
+                                <View style={{ padding: 10, flexDirection: "row", justifyContent: "center", alignItems: 'center' }}>
+                                    <Icon style={{ marginRight: 10, marginTop: -5 }} type='ionicon' name='log-out-outline' size={24} color={colors.danger} />
+                                    <Text style={{ fontFamily: fonts.primary[600], color: colors.danger, fontSize: 15 }}>Log Out</Text>
+                                </View>
+                            </TouchableNativeFeedback>
                         </View>
-                        {/* data detail */}
                     </View>
-                </ScrollView>
+                    {/* data detail */}
+                </ImageBackground>
 
             }
 

@@ -1,11 +1,16 @@
-const { getDefaultConfig } = require('metro-config');
+const { getDefaultConfig } = require("metro-config");
+
 module.exports = (async () => {
-  const defaultConfig = await getDefaultConfig();
-  const { assetExts } = defaultConfig.resolver;
+  const {
+    resolver: { sourceExts, assetExts }
+  } = await getDefaultConfig();
   return {
+    transformer: {
+      babelTransformerPath: require.resolve("react-native-svg-transformer")
+    },
     resolver: {
-      // Add bin to assetExts
-      assetExts: [...assetExts, 'bin', 'tflite'],
+      assetExts: assetExts.filter((ext) => ext !== "svg"),
+      sourceExts: [...sourceExts, "svg"]
     }
   };
 })();

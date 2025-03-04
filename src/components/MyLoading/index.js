@@ -8,8 +8,8 @@ const windowHeight = Dimensions.get('window').height;
 export default function MyLoading({ type = 'Circle', color = colors.white }) {
     return (
         <View style={styles.container}>
-            <Spinner isVisible={true} size={80} type={type} color={color} />
-            <Text style={styles.text}>Loading, please wait...</Text>
+            <Spinner isVisible={true} size={80} type="9CubeGrid" color={color} />
+            <Text style={styles.text}>Loading...</Text>
         </View>
     );
 }
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Background hitam transparan
+        backgroundColor: colors.black + '4D', // Background hitam transparan
         zIndex: 9999, // Memastikan loading berada di atas elemen lain
     },
     text: {

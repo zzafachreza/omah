@@ -79,7 +79,7 @@ export default function Home({ navigation, route }) {
 
   const renderSliderItem = ({ item }) => (
     <View style={{ alignItems: "center", justifyContent: "center" }}>
-      <Image style={{ width: 350, height: 218, alignSelf: "center" }} source={{
+      <Image style={{ width: windowWidth - 20, height: 210, borderRadius: 10, alignSelf: "center" }} source={{
         uri: webURL + item.gambar
       }} />
     </View>
@@ -124,7 +124,9 @@ export default function Home({ navigation, route }) {
       <View style={{
         padding: 10,
         backgroundColor: colors.primary,
-        height: 200,
+        height: windowHeight / 3.6,
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
 
       }}>
 
@@ -150,8 +152,8 @@ export default function Home({ navigation, route }) {
 
           <View>
             <Image style={{
-              width: 82,
-              height: 86,
+              width: 80,
+              height: 80,
               alignSelf: 'center'
             }} source={require('../../assets/logosplash.png')} />
           </View>
@@ -164,8 +166,7 @@ export default function Home({ navigation, route }) {
         <View style={{
           alignItems: "center",
           justifyContent: "center",
-          padding: 5,
-          margin: 0,
+          padding: 10,
           marginTop: -80
 
         }}>

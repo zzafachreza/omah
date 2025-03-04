@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {
   Splash,
@@ -8,93 +7,21 @@ import {
   Register,
   Account,
   AccountEdit,
-  StatusGizi,
-  Imt,
-  Take,
-  StatusGiziHasil,
-  DataIbuHamil,
-  DataPemeriksaanIbuHami,
-  SubDataPemeriksaanIbuHami,
-  IbuHamil,
-  TrisemesterI,
-  TrisemesterII1,
-  TrisemesterIII1,
-  TrisemesterIII2,
-  TrisemesterIII3,
-  IbuBersalin,
-  IbuNifas,
-  IbuNifasKF,
-  VideoMateri,
-  TanyaJawab,
-  Artikel,
-  Kuesioner,
-  TrisemesterII2,
-  InfoLayananKesehatan,
-  InfoEdukasiPenyakit,
-  InfoEdukasiPenyakitKanker,
-  InfoEdukasiPenyakitStroke,
-  InfoEdukasiPenyakitJantung,
-  InfoEdukasiPenyakitGinjal,
-  InfoEdukasiPenyakitDiabetes,
-  InteraksiBersamaTim,
-  TentangAplikasi,
-  InfoEdukasiPenyakitStunting,
-  PrintKainRoll,
-  PrintJersey,
-  CetakSample,
-  CetakSampleKainRoll,
-  CetakSampleHijab,
-  CetakSampleJersey,
-  PrintHijab,
-  Riwayat,
-  MulaiPage,
-  Indentitas,
-  HasilTekananDarah,
-  SubRiwayatPemeriksaanLaboratorium,
-  Gula,
-  ProfilLipid,
-  LainLain,
-  RiwayatPemeriksaanRadiologis,
-  RiwayatObat,
-  EKG,
-  PenilaianNyeri,
-  Rekomendasi,
-  KalkulatorKompos,
-  Petunjuk,
-  InputSwamedikasi,
-  RiwayatPelayanan,
-  Referensi,
-  Edit,
   DestinasiWisata,
-  DetailDestinasiWisata,
-  UlasanDestinasi,
-  OleholehUMKMDetail,
-  UlasanOleholeh,
-  TambahKomentarOleholeh,
-  RekomendasiKuliner,
-  KulinerDetail,
-  UlasanKuliner,
-  TambahKomentarKuliner,
+  OleholehUMKM,
   SewaTransport,
-  UlasanTransport,
-  TransportDetail,
-  TambahKomentarTransport,
-  PenginepanDetail,
-  UlasanPenginapan,
-  TambahKomentarPenginapan,
   SharingPengalaman,
   TambahPengalaman,
   PanduanWisata,
-  TambahKomentarDestinasi,
-  Detail
+  Detail,
+  RekomendasiKuliner,
+  Labs
 
 
 } from '../pages';
 import { colors } from '../utils';
-import { Icon } from 'react-native-elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigator } from '../components';
-import OleholehUMKM from '../pages/Menu/oleholeh';
 import PanduanDetail from '../pages/Menu/panduandetail';
 
 
@@ -123,13 +50,6 @@ export default function Router() {
         }}
       />
 
-      <Stack.Screen
-        name="Edit"
-        component={Edit}
-        options={{
-          headerShown: false,
-        }}
-      />
 
 
       <Stack.Screen
@@ -178,33 +98,18 @@ export default function Router() {
         }}
       />
 
+
+
+
       <Stack.Screen
-        name="DetailDestinasiWisata"
-        component={DetailDestinasiWisata}
+        name="RekomendasiKuliner"
+        component={RekomendasiKuliner}
         options={{
           headerShown: false,
 
         }}
       />
 
-
-      <Stack.Screen
-        name="UlasanDestinasi"
-        component={UlasanDestinasi}
-        options={{
-          headerShown: false,
-
-        }}
-      />
-
-      <Stack.Screen
-        name="TambahKomentarDestinasi"
-        component={TambahKomentarDestinasi}
-        options={{
-          headerShown: false,
-
-        }}
-      />
 
 
       <Stack.Screen
@@ -217,8 +122,8 @@ export default function Router() {
       />
 
       <Stack.Screen
-        name="OleholehUMKMDetail"
-        component={OleholehUMKMDetail}
+        name="Labs"
+        component={Labs}
         options={{
           headerShown: false,
 
@@ -226,60 +131,6 @@ export default function Router() {
       />
 
 
-      <Stack.Screen
-        name="UlasanOleholeh"
-        component={UlasanOleholeh}
-        options={{
-          headerShown: false,
-
-        }}
-      />
-
-
-      <Stack.Screen
-        name="TambahKomentarOleholeh"
-        component={TambahKomentarOleholeh}
-        options={{
-          headerShown: false,
-
-        }}
-      />
-
-      <Stack.Screen
-        name="RekomendasiKuliner"
-        component={RekomendasiKuliner}
-        options={{
-          headerShown: false,
-
-        }}
-      />
-
-      <Stack.Screen
-        name="KulinerDetail"
-        component={KulinerDetail}
-        options={{
-          headerShown: false,
-
-        }}
-      />
-
-      <Stack.Screen
-        name="UlasanKuliner"
-        component={UlasanKuliner}
-        options={{
-          headerShown: false,
-
-        }}
-      />
-
-      <Stack.Screen
-        name="TambahKomentarKuliner"
-        component={TambahKomentarKuliner}
-        options={{
-          headerShown: false,
-
-        }}
-      />
 
 
       <Stack.Screen
@@ -291,62 +142,8 @@ export default function Router() {
         }}
       />
 
-      <Stack.Screen
-        name="TransportDetail"
-        component={TransportDetail}
-        options={{
-          headerShown: false,
-
-        }}
-      />
 
 
-      <Stack.Screen
-        name="UlasanTransport"
-        component={UlasanTransport}
-        options={{
-          headerShown: false,
-
-        }}
-      />
-
-
-      <Stack.Screen
-        name="TambahKomentarTransport"
-        component={TambahKomentarTransport}
-        options={{
-          headerShown: false,
-
-        }}
-      />
-
-
-      <Stack.Screen
-        name="PenginepanDetail"
-        component={PenginepanDetail}
-        options={{
-          headerShown: false,
-
-        }}
-      />
-
-      <Stack.Screen
-        name="UlasanPenginapan"
-        component={UlasanPenginapan}
-        options={{
-          headerShown: false,
-
-        }}
-      />
-
-      <Stack.Screen
-        name="TambahKomentarPenginapan"
-        component={TambahKomentarPenginapan}
-        options={{
-          headerShown: false,
-
-        }}
-      />
 
       <Stack.Screen
         name="SharingPengalaman"

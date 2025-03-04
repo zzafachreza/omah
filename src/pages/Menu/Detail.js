@@ -1,4 +1,4 @@
-import { Alert, FlatList, Image, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Alert, FlatList, Image, Linking, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Color, colors, fonts, windowWidth } from '../../utils';
 import { MyButton, MyGap, MyHeader } from '../../components';
@@ -9,14 +9,21 @@ import YoutubePlayer from "react-native-youtube-iframe";
 import { useIsFocused } from '@react-navigation/native';
 import axios from 'axios';
 import RenderHTML from 'react-native-render-html';
+import Modal from 'react-native-modal';
 import 'intl';
 import 'intl/locale-data/jsonp/id';
 import { Icon } from 'react-native-elements';
 import { Rating } from 'react-native-ratings';
 import { useToast } from 'react-native-toast-notifications';
+import ImageViewer from 'react-native-image-zoom-viewer';
+import { TouchableWithoutFeedback } from 'react-native';
 export default function Detail({ navigation, route }) {
 
+    const [isModalVisible, setModalVisible] = useState(false);
 
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+    };
 
     const systemFonts = [fonts.body3.fontFamily, fonts.headline4.fontFamily];
 
@@ -195,6 +202,22 @@ export default function Detail({ navigation, route }) {
         })
     }
 
+
+    const images = [
+        {
+            url: webURL + item.cover,
+        },
+        {
+            url: webURL + item.gambar1,
+        },
+        {
+            url: webURL + item.gambar2,
+        },
+        {
+            url: webURL + item.gambar3,
+        },
+    ]
+
     return (
         <SafeAreaView style={{
             flex: 1,
@@ -213,41 +236,45 @@ export default function Detail({ navigation, route }) {
                         marginBottom: 10,
                     }}>{item.nama}</Text>
 
-                    <Image source={{
-                        uri: webURL + item.cover
-                    }} style={{
-                        width: '100%',
-                        height: 200,
-                        borderRadius: 10,
-                    }} />
+                    <TouchableWithoutFeedback onPress={toggleModal}>
+                        <Image source={{
+                            uri: webURL + item.cover
+                        }} style={{
+                            width: '100%',
+                            height: 200,
+                            borderRadius: 10,
+                        }} />
+                    </TouchableWithoutFeedback>
 
-                    <View style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        marginVertical: 10,
-                    }}>
-                        <Image source={{
-                            uri: webURL + item.cover
-                        }} style={{
-                            width: '30%',
-                            height: 100,
-                            borderRadius: 10,
-                        }} />
-                        <Image source={{
-                            uri: webURL + item.cover
-                        }} style={{
-                            width: '30%',
-                            height: 100,
-                            borderRadius: 10,
-                        }} />
-                        <Image source={{
-                            uri: webURL + item.cover
-                        }} style={{
-                            width: '30%',
-                            height: 100,
-                            borderRadius: 10,
-                        }} />
-                    </View>
+                    <TouchableWithoutFeedback onPress={toggleModal}>
+                        <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            marginVertical: 10,
+                        }}>
+                            <Image source={{
+                                uri: webURL + item.gambar1
+                            }} style={{
+                                width: '30%',
+                                height: 100,
+                                borderRadius: 10,
+                            }} />
+                            <Image source={{
+                                uri: webURL + item.gambar2
+                            }} style={{
+                                width: '30%',
+                                height: 100,
+                                borderRadius: 10,
+                            }} />
+                            <Image source={{
+                                uri: webURL + item.gambar3
+                            }} style={{
+                                width: '30%',
+                                height: 100,
+                                borderRadius: 10,
+                            }} />
+                        </View>
+                    </TouchableWithoutFeedback>
                     {/* DESKRIPSI */}
                     <RenderHTML
 
@@ -285,11 +312,30 @@ export default function Detail({ navigation, route }) {
                             fontSize: 12,
                         }}>Lokasi</Text>
                         <Text style={{ flex: 0.03 }}>:</Text>
-                        <Text style={{
+                        <View style={{
                             flex: 1,
-                            fontFamily: fonts.secondary[600],
-                            fontSize: 12,
-                        }}>{item.lokasi}</Text>
+                        }}>
+                            <Text style={{
+
+                                fontFamily: fonts.secondary[600],
+                                fontSize: 12,
+                            }}>{item.lokasi}</Text>
+                            <TouchableOpacity onPress={() => Linking.openURL(item.link_maps)} style={{
+                                marginVertical: 10,
+                                borderWidth: 1,
+                                borderRadius: 30,
+                                borderColor: Color.blueGray[300],
+                                padding: 4,
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            }}>
+                                <Image style={{
+                                    width: '50%',
+                                    height: 30,
+                                    resizeMode: 'contain'
+                                }} source={require('../../assets/maps.png')} />
+                            </TouchableOpacity>
+                        </View>
                     </View>
                     <View style={{
                         marginBottom: 10,
@@ -504,6 +550,22 @@ export default function Detail({ navigation, route }) {
 
                 </View>
             </ScrollView>
+
+            <Modal transparent={true} style={{
+
+            }} isVisible={isModalVisible}>
+                <View style={{
+
+                    flex: 0.5,
+                }}>
+                    <View style={{
+                        height: 300,
+                    }}>
+                        <ImageViewer style={{}} imageUrls={images} />
+                    </View>
+                    <MyButton title="Tutup" onPress={toggleModal} />
+                </View>
+            </Modal>
         </SafeAreaView>
     )
 }

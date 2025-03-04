@@ -1,8 +1,8 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { Icon } from "react-native-elements";
 import { colors, fonts } from "../../utils";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+
 
 
 export default function DestinasiCard({ image, title, rating, reviews, lokasi, onPress }) {

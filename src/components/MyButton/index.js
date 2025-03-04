@@ -21,7 +21,7 @@ export default function MyButton({
     <TouchableOpacity
       style={styles(warna, radius, borderSize, borderColor).btn}
       onPress={onPress}>
-      
+
       {kiri && <Icon type="ionicon" name={Icons} color={iconColor} size={24} />}
       <Text
         style={{
@@ -29,7 +29,7 @@ export default function MyButton({
 
           marginLeft: kiri ? 5 : 0,
           marginRight: !kiri ? 5 : 0,
-         fontFamily:fonts.primary[700],
+          fontFamily: fonts.secondary[800],
           // fontWeight: fontWeight,
         }}>
         {title}
@@ -42,7 +42,7 @@ export default function MyButton({
 const styles = (warna, radius, borderSize, borderColor) =>
   StyleSheet.create({
     btn: {
-      marginTop:15,
+      marginTop: 15,
       height: 40,
       borderRadius: radius,
       justifyContent: 'center',
@@ -51,6 +51,6 @@ const styles = (warna, radius, borderSize, borderColor) =>
       borderWidth: borderSize,
       borderColor: borderColor,
       flexDirection: 'row',
-      
+
     },
   });

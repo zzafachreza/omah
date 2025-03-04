@@ -9,6 +9,7 @@ import {
     Alert,
     ActivityIndicator,
     ScrollView,
+    ImageBackground,
 } from 'react-native';
 import { windowWidth, fonts } from '../../utils/fonts';
 import { apiURL, getData, MYAPP, storeData, urlAPI, urlApp, urlAvatar } from '../../utils/localStorage';
@@ -61,7 +62,7 @@ export default function AccountEdit({ navigation, route }) {
     }, [])
 
     return (
-        <SafeAreaView style={{
+        <ImageBackground source={require('../../assets/bghome.png')} style={{
             flex: 1,
             backgroundColor: colors.white,
         }}>
@@ -133,7 +134,7 @@ export default function AccountEdit({ navigation, route }) {
                 {!loading && <MyButton warna={colors.primary} colorText={colors.white} iconColor={colors.white} onPress={sendServer} title="Simpan Perubahan" Icons="download-outline" />}
                 <MyGap jarak={20} />
             </ScrollView>
-        </SafeAreaView >
+        </ImageBackground >
     )
 }
 
