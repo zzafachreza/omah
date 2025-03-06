@@ -6,6 +6,7 @@ import { MyButton, MyGap, MyInput, MyLoading } from '../../components'
 import { showMessage } from 'react-native-flash-message'
 import axios from 'axios'
 import { api_token, apiURL, MYAPP, storeData } from '../../utils/localStorage'
+import { useToast } from 'react-native-toast-notifications'
 export default function Register({ navigation }) {
 
     const [kirim, setKirim] = useState({
@@ -17,6 +18,9 @@ export default function Register({ navigation }) {
         password: '',
         repassword: ''
     });
+
+
+    const toast = useToast();
 
     const [loading, setLoading] = useState(false);
 
@@ -67,7 +71,9 @@ export default function Register({ navigation }) {
                         console.log(response.data);
                         storeData('user', kirim);
                         navigation.replace("Login");
-                        Alert.alert(MYAPP, "Selamat!, Anda berhasil daftar!");
+                        toast.show('Selamat, Anda Berhasil Daftar! ', {
+                            type: 'success'
+                        })
                     } else if (response.data.status === 404) {
                         setLoading(false);
                         showMessage({

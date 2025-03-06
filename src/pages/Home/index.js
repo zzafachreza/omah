@@ -25,6 +25,7 @@ import MyLoading from '../../components/MyLoading';
 
 import { Icon } from 'react-native-elements';
 import { Linking } from 'react-native';
+import Carousel from 'react-native-snap-carousel';
 
 const MyMenu = ({ onPress, img, label, imgStyle, labelStyle, containerStyle }) => {
   return (
@@ -78,10 +79,20 @@ export default function Home({ navigation, route }) {
   const [sliderImages, setSlider] = useState([]);
 
   const renderSliderItem = ({ item }) => (
-    <View style={{ alignItems: "center", justifyContent: "center" }}>
-      <Image style={{ width: windowWidth - 20, height: 210, borderRadius: 10, alignSelf: "center" }} source={{
-        uri: webURL + item.gambar
-      }} />
+    <View style={{
+      width: windowWidth - 20,
+      position: 'relative',
+      borderRadius: 10,
+      overflow: 'hidden'
+    }}>
+      <Image
+        source={{ uri: webURL + item.gambar }}
+        style={{
+          // resizeMode: 'contain',
+          height: 220,
+          width: windowWidth - 20,
+        }}
+      />
     </View>
   );
 
@@ -170,12 +181,17 @@ export default function Home({ navigation, route }) {
           marginTop: -80
 
         }}>
-          <FlatList
+          <Carousel
+            autoplay
+            loop={true}
+            // layout="stack"
+            layoutCardOffset={18}
+            itemWidth={windowWidth - 20}
+            removeClippedSubviews={false}
             data={sliderImages}
             renderItem={renderSliderItem}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            pagingEnabled
+            sliderWidth={windowWidth}
+
           />
         </View>
       </View>

@@ -15,7 +15,8 @@ import {
   PanduanWisata,
   Detail,
   RekomendasiKuliner,
-  Labs
+  Labs,
+  EditPengalaman
 
 
 } from '../pages';
@@ -55,6 +56,16 @@ export default function Router() {
       <Stack.Screen
         name="Login"
         component={Login}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+
+      <Stack.Screen
+        name="EditPengalaman"
+        component={EditPengalaman}
         options={{
           headerShown: false,
 

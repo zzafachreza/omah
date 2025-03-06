@@ -13,6 +13,7 @@ import PanduanWisata from './Menu/panduan';
 import Detail from './Menu/Detail';
 import RekomendasiKuliner from './Menu/kuliner';
 import Labs from './Menu/Labs';
+import EditPengalaman from './Menu/EditPengalaman';
 
 
 
@@ -31,7 +32,8 @@ export {
   SharingPengalaman,
   TambahPengalaman,
   PanduanWisata,
-  Labs
+  Labs,
+  EditPengalaman
 
 
 

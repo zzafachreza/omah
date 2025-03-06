@@ -1,7 +1,7 @@
 import { Alert, FlatList, Image, Linking, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Color, colors, fonts, windowWidth } from '../../utils';
-import { MyButton, MyGap, MyHeader } from '../../components';
+import { MyButton, MyGap, MyHeader, MyLoading } from '../../components';
 import { apiURL, getData, MYAPP, webURL } from '../../utils/localStorage';
 import moment from 'moment';
 import Share from 'react-native-share';
@@ -16,10 +16,12 @@ import { Icon } from 'react-native-elements';
 import { Rating } from 'react-native-ratings';
 import { useToast } from 'react-native-toast-notifications';
 import ImageViewer from 'react-native-image-zoom-viewer';
-import { TouchableWithoutFeedback } from 'react-native';
+import { TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
 export default function Detail({ navigation, route }) {
 
     const [isModalVisible, setModalVisible] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [loading2, setLoading2] = useState(false);
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
@@ -40,8 +42,8 @@ export default function Detail({ navigation, route }) {
     });
 
 
-    const __getRatingStar = () => {
-        console.log('get rating....')
+    const __getRatingStar = async () => {
+        setLoading(true);
         getData('user').then(u => {
             axios.post(apiURL + 'rating', {
                 fid_modul: item[`id_${ITEM.modul}`],
@@ -61,6 +63,10 @@ export default function Detail({ navigation, route }) {
                     nilai: rataRata,
                     ulasan: res.data.length
                 });
+
+                setTimeout(() => {
+                    setLoading(false)
+                }, 1000)
 
             })
         })
@@ -183,6 +189,7 @@ export default function Detail({ navigation, route }) {
     const toast = useToast();
 
     const sendServer = () => {
+        setLoading2(true);
         axios.post(apiURL + 'rating_add', {
             ...kirim,
             fid_pengguna: user.id_pengguna
@@ -198,6 +205,9 @@ export default function Detail({ navigation, route }) {
                     nilai: 1
                 })
                 __getRatingStar();
+                setTimeout(() => {
+                    setLoading2(false);
+                }, 1000)
             }
         })
     }
@@ -375,7 +385,7 @@ export default function Detail({ navigation, route }) {
                         alignItems: 'flex-start',
                     }}>
                         <Text style={{
-                            flex: 0.3,
+                            flex: 0.7,
                             fontFamily: fonts.secondary[600],
                             fontSize: 12,
                         }}>Harga</Text>
@@ -541,13 +551,13 @@ export default function Detail({ navigation, route }) {
                                 color: Color.blueGray[900],
                             }}
                         />
-                        <MyButton onPress={sendServer} title="Posting" />
-
+                        {!loading2 && <MyButton onPress={sendServer} title="Posting" />}
+                        {loading2 && <MyLoading />}
                     </View>
 
                     {/* CARD REVIEW */}
-                    <FlatList data={data} renderItem={__renderItem} />
-
+                    {!loading && <FlatList data={data} renderItem={__renderItem} />}
+                    {loading && <View style={{ marginTop: 10, }}><ActivityIndicator color={colors.primary} size="large" /></View>}
                 </View>
             </ScrollView>
 

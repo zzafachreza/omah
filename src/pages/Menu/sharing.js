@@ -102,6 +102,7 @@ export default function SharingPengalaman({ navigation }) {
         <TouchableOpacity onPress={() => {
           Share.open({
             title: MYAPP,
+            message: item.deskripsi,
             url: item.link_youtube ? 'https://www.youtube.com/watch?v=' + item.link_youtube : item.gambar
           }).catch(err => console.log(err));
         }}>
@@ -111,33 +112,42 @@ export default function SharingPengalaman({ navigation }) {
         </TouchableOpacity>
 
         {user && item.id_pengguna == user.id_pengguna && (
-          <TouchableOpacity onPress={() => {
-            Alert.alert(MYAPP, 'Apakah kamu yakin akan hapus ini?', [
-              { text: 'TIDAK' },
-              {
-                text: 'YA, HAPUS',
-                onPress: () => {
-                  axios.post(apiURL + 'pengalaman_delete', {
-                    id_pengalaman: item.id_pengalaman
-                  }).then(res => {
-                    if (res.data.status == 200) {
-                      toast.show(res.data.message, { type: 'success' });
-                      __getTransaksi();
-                    }
-                  });
+          <>
+            <TouchableOpacity onPress={() => {
+              Alert.alert(MYAPP, 'Apakah kamu yakin akan hapus ini?', [
+                { text: 'TIDAK' },
+                {
+                  text: 'YA, HAPUS',
+                  onPress: () => {
+                    axios.post(apiURL + 'pengalaman_delete', {
+                      id_pengalaman: item.id_pengalaman
+                    }).then(res => {
+                      if (res.data.status == 200) {
+                        toast.show(res.data.message, { type: 'success' });
+                        __getTransaksi();
+                      }
+                    });
+                  }
                 }
-              }
-            ]);
-          }}>
-            <View style={{ marginLeft: 10 }}>
-              <Icon type='ionicon' name='trash-outline' size={25} color={colors.primary} />
-            </View>
-          </TouchableOpacity>
+              ]);
+            }}>
+              <View style={{ marginLeft: 10 }}>
+                <Icon type='ionicon' name='trash-outline' size={25} color={colors.primary} />
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+              navigation.navigate('EditPengalaman', item)
+            }}>
+              <View style={{ marginLeft: 10 }}>
+                <Icon type='ionicon' name='create-outline' size={25} color={colors.primary} />
+              </View>
+            </TouchableOpacity>
+          </>
         )}
       </View>
 
       <View style={{ padding: 5 }}>
-        <Text style={{ fontFamily: fonts.primary[400], fontSize: 12, textAlign: 'left' }}>{item.caption}</Text>
+        <Text style={{ fontFamily: fonts.primary[400], fontSize: 12, textAlign: 'left' }}>{item.deskripsi}</Text>
       </View>
     </View>
   );
