@@ -14,11 +14,13 @@ import Detail from './Menu/Detail';
 import RekomendasiKuliner from './Menu/kuliner';
 import Labs from './Menu/Labs';
 import EditPengalaman from './Menu/EditPengalaman';
+import DetailSharing from './Menu/DetailSharing';
 
 
 
 export {
   Splash,
+  DetailSharing,
   Detail,
   Home,
   Login,

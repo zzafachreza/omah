@@ -69,14 +69,35 @@ export default function SharingPengalaman({ navigation }) {
     <View style={{ padding: 0 }}>
       <View style={{ flexDirection: 'row', alignItems: "center", paddingVertical: 10, paddingLeft: 5 }}>
         <Image style={{ width: 30, height: 30, borderRadius: 15 }} source={{ uri: item.file_pengguna }} />
-        <View>
+        <View style={{
+          flex: 1
+        }}>
           <Text style={{ fontFamily: fonts.primary[600], fontSize: 15, color: colors.primary, marginLeft: 10 }}>
             {item.nama_lengkap}
           </Text>
           <Text style={{ fontFamily: fonts.primary[400], fontSize: 12, color: colors.black, marginLeft: 10 }}>
             {moment(item.tanggal).format('DD MMMM YYYY')}
           </Text>
+
         </View>
+        <TouchableOpacity onPress={() => navigation.navigate('DetailSharing', item)} style={{
+          marginRight: 10,
+          backgroundColor: colors.primary,
+          width: 80,
+          paddingVertical: 5,
+          paddingHorizontal: 10,
+          borderRadius: 5,
+          flexDirection: 'row'
+        }}>
+
+          <Text style={{
+            flex: 1,
+            fontFamily: fonts.secondary[600],
+            color: colors.white,
+            fontSize: 12,
+          }}>Detail</Text>
+          <Icon type='ionicon' name='search-outline' size={16} color="white" />
+        </TouchableOpacity>
       </View>
 
       <View style={{ alignItems: 'center' }}>

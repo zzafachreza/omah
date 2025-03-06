@@ -104,7 +104,7 @@ export default function AccountEdit({ navigation, route }) {
                         width: 100,
                         height: 100,
                         borderWidth: 1,
-                        borderColor: Color.blueGray[100],
+                        borderColor: Color.blueGray[400],
                         overflow: 'hidden',
                         borderRadius: 20,
                         justifyContent: 'center',

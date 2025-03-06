@@ -16,7 +16,8 @@ import {
   Detail,
   RekomendasiKuliner,
   Labs,
-  EditPengalaman
+  EditPengalaman,
+  DetailSharing
 
 
 } from '../pages';
@@ -56,6 +57,16 @@ export default function Router() {
       <Stack.Screen
         name="Login"
         component={Login}
+        options={{
+          headerShown: false,
+
+        }}
+      />
+
+
+      <Stack.Screen
+        name="DetailSharing"
+        component={DetailSharing}
         options={{
           headerShown: false,
 

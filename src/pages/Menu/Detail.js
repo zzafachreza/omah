@@ -128,6 +128,13 @@ export default function Detail({ navigation, route }) {
                             {Array.from({ length: 5 - item.nilai }, (_, i) => (
                                 <Icon key={`grey-${i}`} type="ionicon" name="star" size={15} color="grey" />
                             ))}
+
+                            <Text style={{
+                                fontFamily: fonts.secondary[400],
+                                fontSize: 10,
+                                color: Color.blueGray[400],
+                                left: 10,
+                            }}> {moment(item.tanggal + ' ' + item.jam, 'YYYY-MM-DD HH:mm:ss').fromNow()}</Text>
                         </View>
                     </View>
                 </View>
@@ -552,7 +559,7 @@ export default function Detail({ navigation, route }) {
                             }}
                         />
                         {!loading2 && <MyButton onPress={sendServer} title="Posting" />}
-                        {loading2 && <MyLoading />}
+
                     </View>
 
                     {/* CARD REVIEW */}
