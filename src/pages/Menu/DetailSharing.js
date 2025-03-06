@@ -41,7 +41,7 @@ export default function DetailSharing({
 
                     <YoutubePlayer height={223} width={380} play={false} videoId={item.link_youtube} />
 
-                    <Image style={{ width: 414, height: 243, borderRadius: 10 }} source={{ uri: item.gambar }} />
+                    {item.gambar.length > 0 && <Image style={{ width: 414, height: 243, borderRadius: 10 }} source={{ uri: item.gambar }} />}
 
                 </View>
                 <View style={{ padding: 5 }}>

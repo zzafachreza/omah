@@ -16,6 +16,7 @@ import { Icon } from 'react-native-elements';
 import { Rating } from 'react-native-ratings';
 import { useToast } from 'react-native-toast-notifications';
 import ImageViewer from 'react-native-image-zoom-viewer';
+import StarRating from 'react-native-star-rating-widget';
 import { TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
 export default function Detail({ navigation, route }) {
 
@@ -241,7 +242,10 @@ export default function Detail({ navigation, route }) {
             backgroundColor: colors.white
         }}>
             <MyHeader title={ITEM.judul} />
-            <ScrollView>
+            <ScrollView
+                removeClippedSubviews={true} // Hapus elemen yang tidak terlihat dari memori
+                showsVerticalScrollIndicator={false}
+            >
                 <View style={{
                     flex: 1,
                     padding: 10,
@@ -511,14 +515,10 @@ export default function Detail({ navigation, route }) {
                                     color: colors.primary,
                                     marginBottom: 4,
                                 }}>{user.nama_lengkap}</Text>
-                                <Rating
+                                {/* <Rating
                                     minValue={1}
                                     type="custom"
-                                    ratingCount={5}
-                                    imageSize={20}
 
-                                    startingValue={1}
-                                    ratingColor="gold"
                                     onFinishRating={x => setKirim({
                                         ...kirim,
                                         nilai: x
@@ -528,6 +528,16 @@ export default function Detail({ navigation, route }) {
                                         // width: 200,
                                         alignSelf: 'flex-start'
                                     }}
+                                /> */}
+                                <StarRating
+
+                                    enableSwiping
+                                    enableHalfStar={false}
+                                    rating={kirim.nilai}
+                                    onChange={x => setKirim({
+                                        ...kirim,
+                                        nilai: x
+                                    })}
                                 />
 
 
@@ -563,7 +573,7 @@ export default function Detail({ navigation, route }) {
                     </View>
 
                     {/* CARD REVIEW */}
-                    {!loading && <FlatList data={data} renderItem={__renderItem} />}
+                    {!loading && <FlatList legacyImplementation={false} data={data} renderItem={__renderItem} />}
                     {loading && <View style={{ marginTop: 10, }}><ActivityIndicator color={colors.primary} size="large" /></View>}
                 </View>
             </ScrollView>
